@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<!-- saved from url=(0126)https://www.freecodecamp.org/news/learn-kubernetes-in-under-3-hours-a-detailed-guide-to-orchestrating-containers-114ff420e882/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>Learn Kubernetes in Under 3 Hours: A Detailed Guide to Orchestrating Containers</title>
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" type="text/css" href="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism.min.css">
+    <link rel="stylesheet" type="text/css" href="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-unescaped-markup.css">
+
+    <link href="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/screen.css">
+    <link rel="stylesheet" type="text/css" href="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/algolia-search.css">
+    
+    <script type="text/javascript" async="" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/analytics.js"></script><script async="" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/gtm.js"></script><script src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/algoliasearch.min.js"></script>
+    <script src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/autocomplete.min.js"></script>
+
+    <script src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/saved_resource"></script>
+
+    <link rel="shortcut icon" href="https://www.freecodecamp.org/news/favicon.png" type="image/png">
+    <link rel="canonical" href="https://www.freecodecamp.org/news/learn-kubernetes-in-under-3-hours-a-detailed-guide-to-orchestrating-containers-114ff420e882/">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link rel="amphtml" href="https://www.freecodecamp.org/news/learn-kubernetes-in-under-3-hours-a-detailed-guide-to-orchestrating-containers-114ff420e882/amp/">
+    
+    <meta property="og:site_name" content="freeCodeCamp.org">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Learn Kubernetes in Under 3 Hours: A Detailed Guide to Orchestrating Containers">
+    <meta property="og:description" content="Why are banks paying me big bucks for something as simple as Kubernetes? When
+anybody — anybody can learn in under three hours?
+
+If you doubt me, I challenge you to give it a try! By the end of this article,
+you will be able to run a Microservice based application on a Kubernetes
+Cluster. And I guarantee this because it’s how I introduce our clients to
+Kubernetes.
+
+What does this guide do differently from the other resources, Rinor?
+
+Quite a lot! Most guides start with the simple stuff: Kubernet">
+    <meta property="og:url" content="https://www.freecodecamp.org/news/learn-kubernetes-in-under-3-hours-a-detailed-guide-to-orchestrating-containers-114ff420e882/">
+    <meta property="og:image" content="https://cdn-media-1.freecodecamp.org/images/1*0ju9JOPACF90yXSi-s2gwQ.jpeg">
+    <meta property="article:published_time" content="2018-04-14T19:10:07.000Z">
+    <meta property="article:modified_time" content="2019-10-03T14:12:18.000Z">
+    <meta property="article:tag" content="Kubernetes">
+    <meta property="article:tag" content="Docker">
+    <meta property="article:tag" content="Java">
+    <meta property="article:tag" content="DevOps">
+    <meta property="article:tag" content="Web Development">
+    
+    <meta property="article:publisher" content="https://www.facebook.com/freecodecamp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Learn Kubernetes in Under 3 Hours: A Detailed Guide to Orchestrating Containers">
+    <meta name="twitter:description" content="Why are banks paying me big bucks for something as simple as Kubernetes? When
+anybody — anybody can learn in under three hours?
+
+If you doubt me, I challenge you to give it a try! By the end of this article,
+you will be able to run a Microservice based application on a Kubernetes
+Cluster. And I guarantee this because it’s how I introduce our clients to
+Kubernetes.
+
+What does this guide do differently from the other resources, Rinor?
+
+Quite a lot! Most guides start with the simple stuff: Kubernet">
+    <meta name="twitter:url" content="https://www.freecodecamp.org/news/learn-kubernetes-in-under-3-hours-a-detailed-guide-to-orchestrating-containers-114ff420e882/">
+    <meta name="twitter:image" content="https://cdn-media-1.freecodecamp.org/images/1*0ju9JOPACF90yXSi-s2gwQ.jpeg">
+    <meta name="twitter:label1" content="Written by">
+    <meta name="twitter:data1" content="Rinor Maloku">
+    <meta name="twitter:label2" content="Filed under">
+    <meta name="twitter:data2" content="Kubernetes, Docker, Java, DevOps, Web Development">
+    <meta name="twitter:site" content="@freecodecamp">
+    <meta name="twitter:creator" content="@rinormaloku">
+    <meta property="og:image:width" content="800">
+    <meta property="og:image:height" content="533">
+    
+    <script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "publisher": {
+        "@type": "Organization",
+        "name": "freeCodeCamp.org",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.freecodecamp.org/news/content/images/2019/11/fcc_primary_large_24X210.svg",
+            "width": 210,
+            "height": 24
+        }
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Rinor Maloku",
+        "image": {
+            "@type": "ImageObject",
+            "url": "https://www.freecodecamp.org/news/content/images/2019/06/Rinor-Maloku-1.png",
+            "width": 628,
+            "height": 621
+        },
+        "url": "https://www.freecodecamp.org/news/author/rinormaloku/",
+        "sameAs": [
+            "https://rinormaloku.com",
+            "https://twitter.com/rinormaloku"
+        ]
+    },
+    "headline": "Learn Kubernetes in Under 3 Hours: A Detailed Guide to Orchestrating Containers",
+    "url": "https://www.freecodecamp.org/news/learn-kubernetes-in-under-3-hours-a-detailed-guide-to-orchestrating-containers-114ff420e882/",
+    "datePublished": "2018-04-14T19:10:07.000Z",
+    "dateModified": "2019-10-03T14:12:18.000Z",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://cdn-media-1.freecodecamp.org/images/1*0ju9JOPACF90yXSi-s2gwQ.jpeg",
+        "width": 800,
+        "height": 533
+    },
+    "keywords": "Kubernetes, Docker, Java, DevOps, Web Development",
+    "description": "Why are banks paying me big bucks for something as simple as Kubernetes? When\nanybody — anybody can learn in under three hours?\n\nIf you doubt me, I challenge you to give it a try! By the end of this article,\nyou will be able to run a Microservice based application on a Kubernetes\nCluster. And I guarantee this because it’s how I introduce our clients to\nKubernetes.\n\nWhat does this guide do differently from the other resources, Rinor?\n\nQuite a lot! Most guides start with the simple stuff: Kubernet",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.freecodecamp.org/news/"
+    }
+}
+    </script>
+
+    <meta name="generator" content="Ghost 2.25">
+    <link rel="alternate" type="application/rss+xml" title="freeCodeCamp.org" href="https://www.freecodecamp.org/news/rss/">
+    <script>
+  // Set up dataLayer with data if provided
+  window.dataLayer = window.dataLayer || [{ gaPropertyId: 'UA-55446531-20' }];
+
+  // Initialized GTM via gtag
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-55446531-20');
+
+  // Configure and initialize GTM
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl+'&gtm_cookies_win=x';f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer', 'GTM-5D6RKKP');
+</script>
+
+<script>
+// For Runkit embeds
+document.addEventListener('DOMContentLoaded', function() {
+  (function() {
+    const runkitElements = document.querySelectorAll('.runkit-element');
+	  runkitElements.forEach(function(element) {
+      const source = element.innerHTML.replace(/&amp;/g, '&');
+      element.innerHTML = '';
+      RunKit.createNotebook({element, source});
+	  });
+  })();
+});
+</script>
+
+<style id="fit-vids-style">.fluid-width-video-container{flex-grow: 1;width:100%;}.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style></head>
+
+<body class="post-template tag-kubernetes tag-docker tag-java tag-devops tag-web-development">
+
+    <div class="site-wrapper">
+        <nav class="site-nav nav-padding">
+    <div class="site-nav-left">
+        <form onsubmit="submitSearch()">
+  <div role="search" class="searchbox__wrapper">
+    <span class="algolia-autocomplete" style="position: relative; display: inline-block; direction: ltr;"><input type="search" placeholder="Search 5,000+ tutorials" id="search-input" class="aa-input" autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" dir="auto" style="position: relative; vertical-align: top;"><pre aria-hidden="true" style="position: absolute; visibility: hidden; white-space: pre; font-family: Lato, sans-serif; font-size: 18px; font-style: normal; font-variant: normal; font-weight: 400; word-spacing: 0px; letter-spacing: normal; text-indent: 0px; text-rendering: auto; text-transform: none;"></pre><span class="aa-dropdown-menu" role="listbox" id="algolia-autocomplete-listbox-0" style="position: absolute; top: 100%; z-index: 100; display: none; left: 0px; right: auto;"><div class="aa-dataset-1"></div></span></span>
+    <button type="submit" title="Submit your search query." class="ais-SearchBox-submit">
+      <svg class="ais-SearchBox-submitIcon" xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 40 40">
+        <path d="M26.804 29.01c-2.832 2.34-6.465 3.746-10.426 3.746C7.333 32.756 0 25.424 0 16.378 0 7.333 7.333 0 16.378 0c9.046 0 16.378 7.333 16.378 16.378 0 3.96-1.406 7.594-3.746 10.426l10.534 10.534c.607.607.61 1.59-.004 2.202-.61.61-1.597.61-2.202.004L26.804 29.01zm-10.426.627c7.323 0 13.26-5.936 13.26-13.26 0-7.32-5.937-13.257-13.26-13.257C9.056 3.12 3.12 9.056 3.12 16.378c0 7.323 5.936 13.26 13.258 13.26z"></path>
+      </svg>
+    </button>
+  </div>
+</form>
+
+<script>
+  const client = algoliasearch('QMJYL5WYTI', '4318af87aa3ce128708f1153556c6108');
+  const index = client.initIndex('news');
+  const screenWidth = window.screen.width;
+  const screenHeight = window.screen.height;
+  const hitsToRender = (screenWidth >= 767 && screenHeight >= 768) ? 8 : 5;
+  autocomplete('#search-input', { hint: false, debug: true }, [
+    {
+      source: autocomplete.sources.hits(index, { hitsPerPage: hitsToRender }),
+      debounce: 250,
+      templates: {
+        suggestion: (suggestion, result) => {
+          return `
+            <a href="${suggestion.url}">
+              <div class="algolia-result">
+                <span>${suggestion._highlightResult.title.value}</span>
+              </div>
+            </a>
+          `;
+        },
+        empty: (options) => {
+          return `
+            <div class="algolia-result">
+              No tutorials found
+            </div>
+          `;
+        },
+        footer: (query, result) => {
+          if (!query.isEmpty) {
+            return `
+              <hr/>
+              <a id="algolia-footer-selector" href="https://freecodecamp.org/news/search?query=${result.query}">
+                <div class="algolia-result algolia-footer">
+                  <span>See all results for ${result.query}</span>
+                </div>
+              </a>
+            `;
+          }
+        }
+      }
+    }
+  ]).on('autocomplete:selected', (event, suggestion, dataset, context) => {
+    // Set to hit URL if hit is selected by mouse click or enter key
+    hitSelected = suggestion.url;
+    // Do nothing on click, as the browser will already do it
+    if (context.selectionMethod === 'click') {
+      return;
+    }
+    // Change the page, for example, on other events
+    window.location.assign(suggestion.url);
+  });
+
+  // If no hits in the Autocomplete dropdown are highlighted,
+  // treat input like normal search bar
+  const input = document.getElementById('search-input');
+  let searchQuery, hitSelected;
+
+  // Get the value of the search bar after each key event
+  input.addEventListener('input', e => {
+    searchQuery = input.value;
+  });
+
+  input.addEventListener('keydown', e => {
+    if (event.key === 'Enter' && !hitSelected && searchQuery) {
+      window.location.assign(`https://freecodecamp.org/news/search?query=${searchQuery}`);
+    }
+  });
+
+  function submitSearch() {
+    event.preventDefault();
+    // Search for highlighted hit when search button
+    // is pressed to prevent redirecting to a previously
+    // highlighted one
+    hitSelected = document.getElementsByClassName('aa-cursor')[0];
+
+    if (hitSelected && searchQuery) {
+      const articleUrl = hitSelected.querySelector('a').href;
+      window.location.assign(articleUrl);
+    } else if (!hitSelected && searchQuery) {
+      window.location.assign(`https://freecodecamp.org/news/search?query=${searchQuery}`);
+    }
+  }
+</script>
+    </div>
+    <div class="site-nav-middle">
+        <a class="site-nav-logo" href="https://www.freecodecamp.org/news"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/fcc_primary_large_24X210.svg" alt="freeCodeCamp.org"></a>
+    </div>
+    <div class="site-nav-right main-nav">
+        <div class="main-nav-group">
+            <ul class="nav" role="menu">
+    <li class="nav-news" role="menuitem"><a href="https://www.freecodecamp.org/news/">/news</a></li>
+    <li class="nav-forum" role="menuitem"><a href="https://www.freecodecamp.org/forum/">/forum</a></li>
+    <li class="nav-learn" role="menuitem"><a href="https://www.freecodecamp.org/learn/">/learn</a></li>
+</ul>
+
+        </div>
+    </div>
+    <button class="site-nav-right toggle-button-nav">
+        Menu
+    </button>
+</nav>
+
+
+        
+
+
+
+
+<main id="site-main" class="site-main outer">
+    <div class="inner">
+
+        <article class="post-full post tag-kubernetes tag-docker tag-java tag-devops tag-web-development ">
+
+            <header class="post-full-header">
+                <section class="post-full-meta">
+                    <time class="post-full-meta-date" datetime="2018-04-14">14 April 2018</time>
+                    <span class="date-divider">/</span>
+                    <a href="https://www.freecodecamp.org/news/tag/kubernetes/">
+                        #Kubernetes
+                    </a>
+                </section>
+                <h1 class="post-full-title">Learn Kubernetes in Under 3 Hours: A Detailed Guide to Orchestrating Containers</h1>
+            </header>
+
+            <div class="post-full-author-header">
+
+
+                
+<section class="author-card">
+    <img class="author-profile-image" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/Rinor-Maloku-1.png" alt="Rinor Maloku">
+    <section class="author-card-content">
+        <h4 class="author-card-name"><a href="https://www.freecodecamp.org/news/author/rinormaloku/">Rinor Maloku</a></h4>
+        <p>Join me and master one tool at a time @ https://rinormaloku.com</p>
+    </section>
+</section>
+
+
+            </div>
+
+            <figure class="post-full-image">
+                <img srcset="https://cdn-media-1.freecodecamp.org/images/1*0ju9JOPACF90yXSi-s2gwQ.jpeg 300w,
+                            https://cdn-media-1.freecodecamp.org/images/1*0ju9JOPACF90yXSi-s2gwQ.jpeg 600w,
+                            https://cdn-media-1.freecodecamp.org/images/1*0ju9JOPACF90yXSi-s2gwQ.jpeg 1000w,
+                            https://cdn-media-1.freecodecamp.org/images/1*0ju9JOPACF90yXSi-s2gwQ.jpeg 2000w" sizes="(max-width: 800px) 400px,
+                            (max-width: 1170px) 700px,
+                            1400px" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/1_0ju9JOPACF90yXSi-s2gwQ.jpeg" alt="Learn Kubernetes in Under 3 Hours: A Detailed Guide to Orchestrating Containers" onerror="this.style.display=&#39;none&#39;">
+            </figure>
+
+            <section class=" post-full-content">
+                <div class="post-content">
+                    <p>Why are banks paying me big bucks for something as simple as Kubernetes? When anybody — anybody can learn in under three hours?</p><p>If you doubt me, I challenge you to give it a try! By the end of this article, you will be able to run a Microservice based application on a Kubernetes Cluster. And I guarantee this because it’s how I introduce our clients to Kubernetes.</p><p><em>What does this guide do differently from the other resources, Rinor?</em></p><p>Quite a lot! Most guides start with the simple stuff: Kubernetes concepts and and kubectl commands. These guides assume the reader knows about application development, Microservices, and Docker containers.</p><p>In this Article we will go from :</p><ol><li>Running a Microservice based application on your computer.</li><li>Building container images for each service of the Microservice application.</li><li>Introduction to Kubernetes. Deploying a Microservice based application into a Kubernetes Managed Cluster.</li></ol><p>The gradual build up provides the depth required for a mere mortal being to grasp the <em>simplicity</em> of Kubernetes. Yes Kubernetes is simple when you know the context it is used in. Without further ado lets see what we will build.</p><h3 id="application-demo">Application Demo</h3><p>The application has one functionality. It takes one sentence as input. Using Text Analysis, calculates the emotion of the sentence.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/Rl5B3SRE5U5IiIM-8-1HnZdnwMx1TzegzV3D" class="kg-image"><figcaption>Fig. 1. Sentiment Analysis Web App</figcaption></figure><!--kg-card-end: image--><p>From the technical perspective, the application consists of three microservices. Each has one specific functionality:</p><ul><li><strong>SA-Frontend:</strong> a Nginx web server that <strong>serves our ReactJS </strong>static<strong> </strong>files.</li><li><strong>SA-WebApp: </strong>a Java Web Application that <strong>handles requests </strong>from the frontend.</li><li><strong>SA-Logic: </strong>a python application that <strong>performs Sentiment Analysis</strong>.</li></ul><p>It’s important to know that Microservices don’t live in isolation, they enable “separation of concerns” but they still <strong>have to </strong>interact with each other.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/JwIBwPsTfBmelKgSrCCkEZuTzC5Ty1pZi3K7" class="kg-image"><figcaption>Fig. 2. Data flow in the Sentiment Analysis WebApp</figcaption></figure><!--kg-card-end: image--><p>This interaction is best illustrated by showing how the data flows between them:</p><ol><li>A client application requests the index.html (which in turn requests bundled scripts of ReactJS application)</li><li>The user interacting with the application triggers requests to the Spring WebApp.</li><li>Spring WebApp forwards the requests for sentiment analysis to the Python app.</li><li>Python Application calculates the sentiment and returns the result as a response.</li><li>The Spring WebApp returns the response to the React app. (Which then represents the information to the user.)</li></ol><p>The code for all of these applications can be found in <a href="https://github.com/rinormaloku/k8s-mastery" rel="noopener">this repository.</a> I recommend cloning it immediately because we are going to build amazing things together.</p><h3 id="1-running-a-microservice-based-application-on-your-computer">1. Running a Microservice based application on your computer</h3><p>We need to start up all three services. Let’s get started with the most attractive one, the front-end application.</p><h4 id="setting-up-react-for-local-development">Setting up React for Local Development</h4><p>To start the React application you need to have NodeJS and NPM installed on your computer. After installing those navigate with your Terminal to the directory <strong>sa-frontend. </strong>Type the following command:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash"><span class="token function">npm</span> <span class="token function">install</span></code></pre><!--kg-card-end: code--><p>This downloads all the Javascript dependencies of the React application and places them in the folder <strong>node_modules. </strong>(Dependencies are defined in the package.json file). After all dependencies are resolved execute the next command:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash"><span class="token function">npm</span> start</code></pre><!--kg-card-end: code--><p>That’s it! We started our react application and by default you can access it on <strong>localhost:3000. </strong>Feel free to modify the code and see the effects immediately on the browser. That is made possible using <strong>Hot Module Replacement. </strong>This makes front end development a breeze!</p><h4 id="making-our-react-app-production-ready">Making Our React App Production Ready</h4><p>For production we need to build our application into static files and serve them using a web server.</p><p>To build the React application navigate in your terminal to the <strong>sa-frontend </strong>directory. Then execute the following command:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash"><span class="token function">npm</span> run build</code></pre><!--kg-card-end: code--><p>This generates a folder named <strong>build</strong> in your project tree. This folder contains all the static files needed for our ReactJS application.</p><h4 id="serving-static-files-with-nginx">Serving static files with Nginx</h4><p>Install and start the Nginx WebServer (<a href="https://www.nginx.com/resources/wiki/start/topics/tutorials/install/" rel="noopener">how to</a>). Then move the contents of the sa-frontend/build folder to [<em>your_nginx_installation_dir</em>]/<strong>html.</strong></p><p>This way the generated index.html file will be accessible in [<em>your_nginx_installation_dir</em>]/html/index.html. T<strong>his is the default file that Nginx serves</strong>.</p><p>By default the Nginx WebServer listens on port 80. You can specify a different port by updating server.listen property in the file [<em>your_nginx_installation_dir</em>]/conf/nginx.conf.</p><p>Open your browser and hit the endpoint localhost:80, see the ReactJS application appear.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/EOcacd0QABnXiFAXVHPpWcD9scHzvr7jq0Fp" class="kg-image"><figcaption>Fig. 3. React app served from Nginx</figcaption></figure><!--kg-card-end: image--><p>Typing in the field: “Type your sentence.” and pressing the button Send will fail with a 404 error (You can check it in your browser console). But why that? Let’s inspect the code.</p><h4 id="inspecting-the-code">Inspecting the Code</h4><p>In the file <strong>App.js </strong>we can see that pressing the Send button triggers the analyzeSentence method. The code for this method is shown below. (Each line that is commented with #Number will be explained below the script):</p><!--kg-card-begin: code--><pre class=" language-js"><code class=" language-js"><span class="token function">analyzeSentence</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'http://localhost:8080/sentiment'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>  <span class="token comment">// #1</span>
+        method<span class="token punctuation">:</span> <span class="token string">'POST'</span><span class="token punctuation">,</span>
+        headers<span class="token punctuation">:</span> <span class="token punctuation">{</span>
+            <span class="token string">'Content-Type'</span><span class="token punctuation">:</span> <span class="token string">'application/json'</span>
+        <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        body<span class="token punctuation">:</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+                       sentence<span class="token punctuation">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>textField<span class="token punctuation">.</span><span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token comment">// #2</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">response</span> <span class="token operator">=&gt;</span> response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">data</span> <span class="token operator">=&gt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// #3</span>
+<span class="token punctuation">}</span></code></pre><!--kg-card-end: code--><p>#1: URL at which a POST call is made. (An application should be listening for calls at that URL).</p><p>#2: The Request body sent to that application as displayed below:</p><!--kg-card-begin: code--><pre><code>{
+    sentence: “I like yogobella!”
+}</code></pre><!--kg-card-end: code--><p>#3: The response updates the component state. This triggers a re-render of the component. If we received the data, (i.e. the JSON object containing the typed sentence and the polarity) we would display the component polarityComponent because the condition would be fulfilled and we would define the component:</p><!--kg-card-begin: code--><pre class=" language-js"><code class=" language-js"><span class="token keyword">const</span> polarityComponent <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>polarity <span class="token operator">!==</span> <span class="token keyword">undefined</span> <span class="token operator">?</span>
+    <span class="token operator">&lt;</span>Polarity sentence<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>sentence<span class="token punctuation">}</span> 
+              polarity<span class="token operator">=</span><span class="token punctuation">{</span><span class="token keyword">this</span><span class="token punctuation">.</span>state<span class="token punctuation">.</span>polarity<span class="token punctuation">}</span><span class="token operator">/</span><span class="token operator">&gt;</span> <span class="token punctuation">:</span>
+    <span class="token keyword">null</span><span class="token punctuation">;</span></code></pre><!--kg-card-end: code--><p>Everything seems correct. But what are we missing? If you guessed that we didn’t set up anything to listen on localhost:8080, then you are correct! We must start our Spring Web application to listen on that port!</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/KNFf142A66wPteChS7IQmcZA8ohQTZRA8U7E" class="kg-image"><figcaption>Fig. 4. Microservice Spring WebApp missing</figcaption></figure><!--kg-card-end: image--><h4 id="setting-up-the-spring-web-application">Setting up the Spring Web Application</h4><p>To start up the Spring application you need to have JDK8 and Maven installed. (their environment variables need to be set up as well). After installing those you can continue to the next part.</p><h4 id="packaging-the-application-into-a-jar">Packaging the Application into a Jar</h4><p>Navigate in your Terminal to the directory <strong>sa-webapp </strong>and type the following command:</p><!--kg-card-begin: code--><pre><code>mvn install</code></pre><!--kg-card-end: code--><p>This will generate a folder named <strong>target,</strong> in the directory <strong>sa-webapp. </strong>In the folder <strong>target</strong> we have our Java application packaged as a jar: ‘<strong>sentiment-analysis-web-0.0.1-SNAPSHOT.jar</strong>’</p><h4 id="starting-our-java-application">Starting our Java Application</h4><p>Navigate to the target directory and start the application with the command:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">java -jar sentiment-analysis-web-0.0.1-SNAPSHOT.jar</code></pre><!--kg-card-end: code--><p>Darn.. We got an error. Our application fails on startup and our only lead is the exception in the stack trace:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">Error creating bean with name <span class="token string">'sentimentController'</span><span class="token keyword">:</span> Injection of autowired dependencies failed<span class="token punctuation">;</span> nested exception is java.lang.IllegalArgumentException: Could not resolve placeholder <span class="token string">'sa.logic.api.url'</span> <span class="token keyword">in</span> value <span class="token string">"<span class="token variable">${sa.logic.api.url}</span>"</span></code></pre><!--kg-card-end: code--><p>The important information here is the placeholder sa.logic.api.url in the <strong>SentimentController</strong>. Let’s check that out!</p><h3 id="inspecting-the-code-1">Inspecting the Code</h3><!--kg-card-begin: code--><pre class=" language-java"><code class=" language-java"><span class="token annotation punctuation">@CrossOrigin</span><span class="token punctuation">(</span>origins <span class="token operator">=</span> <span class="token string">"*"</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@RestController</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">SentimentController</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Value</span><span class="token punctuation">(</span><span class="token string">"${sa.logic.api.url}"</span><span class="token punctuation">)</span>    <span class="token comment">// #1</span>
+    <span class="token keyword">private</span> <span class="token class-name">String</span> saLogicApiUrl<span class="token punctuation">;</span>
+    
+    <span class="token annotation punctuation">@PostMapping</span><span class="token punctuation">(</span><span class="token string">"/sentiment"</span><span class="token punctuation">)</span>
+    <span class="token keyword">public</span> <span class="token class-name">SentimentDto</span> <span class="token function">sentimentAnalysis</span><span class="token punctuation">(</span>
+        <span class="token annotation punctuation">@RequestBody</span> <span class="token class-name">SentenceDto</span> sentenceDto<span class="token punctuation">)</span> 
+    <span class="token punctuation">{</span>
+        <span class="token class-name">RestTemplate</span> restTemplate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">RestTemplate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        
+        <span class="token keyword">return</span> restTemplate<span class="token punctuation">.</span><span class="token function">postForEntity</span><span class="token punctuation">(</span>
+                saLogicApiUrl <span class="token operator">+</span> <span class="token string">"/analyse/sentiment"</span><span class="token punctuation">,</span>    <span class="token comment">// #2</span>
+                sentenceDto<span class="token punctuation">,</span> <span class="token class-name">SentimentDto</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">getBody</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span></code></pre><!--kg-card-end: code--><ol><li>The <strong>SentimentController</strong> has a field named saLogicApiUrl. The field get’s defined by the property <code>sa.logic.api.url</code> .</li><li>The String saLogicApiUrl is concatenated with the value “/analyse/sentiment”. Together they form the URL to make the request for Sentiment Analysis.</li></ol><p><strong>Defining the Property</strong></p><p>In Spring the default property source is <strong>application.properties.</strong> (Located in <em>sa-webapp/src/main/resources</em>). But that’s not the only means to define a property, it can be done with the earlier command as well:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">java -jar sentiment-analysis-web-0.0.1-SNAPSHOT.jar 
+     --sa.logic.api.url<span class="token operator">=</span>WHAT.IS.THE.SA.LOGIC.API.URL</code></pre><!--kg-card-end: code--><p>The property should be initialized with the value that defines where our Python application is running, this way we will let our Spring Web Application know where to forward messages on run time.</p><p>To make things simpler let’s decide that we will run the python application on <code>localhost:5000.</code> Lets just not forget it!</p><p>Run the below command and we are ready to move to the last service the python application.</p><!--kg-card-begin: code--><pre><code>java -jar sentiment-analysis-web-0.0.1-SNAPSHOT.jar 
+     --sa.logic.api.url=http://localhost:5000</code></pre><!--kg-card-end: code--><!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/gRyXOa3fibWNB7s1DJiu31nB0ziy38FjCWe5" class="kg-image"></figure><!--kg-card-end: image--><h4 id="setting-up-the-python-application">Setting up the Python Application</h4><p>To start the Python application, we need to have Python3 and Pip installed. (Their environment variables need to be set up as well).</p><h4 id="installing-dependencies">Installing Dependencies</h4><p>Navigate in the Terminal to the directory <strong>sa-logic/sa </strong>(<a href="https://github.com/rinormaloku/k8s-mastery" rel="noopener">repo</a>)<strong> </strong>and type the following command:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">python -m pip <span class="token function">install</span> -r requirements.txt
+python -m textblob.download_corpora</code></pre><!--kg-card-end: code--><h4 id="starting-the-app">Starting the app</h4><p>After using Pip to install the dependencies we are ready to start the application by executing the following command:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">python sentiment_analysis.py
+* Running on http://0.0.0.0:5000/ <span class="token punctuation">(</span>Press CTRL+C to quit<span class="token punctuation">)</span></code></pre><!--kg-card-end: code--><p>This means that our application is running and listening for HTTP Requests on port 5000 on localhost.</p><h4 id="inspecting-the-code-2">Inspecting the Code</h4><p>Let’s investigate the code to understand what is happening in the <strong>SA Logic </strong>python application.</p><!--kg-card-begin: code--><pre class=" language-py"><code class=" language-py"><span class="token keyword">from</span> textblob <span class="token keyword">import</span> TextBlob
+<span class="token keyword">from</span> flask <span class="token keyword">import</span> Flask<span class="token punctuation">,</span> request<span class="token punctuation">,</span> jsonify
+
+app <span class="token operator">=</span> Flask<span class="token punctuation">(</span>__name__<span class="token punctuation">)</span>                                   <span class="token comment">#1</span>
+
+<span class="token decorator annotation punctuation">@app<span class="token punctuation">.</span>route</span><span class="token punctuation">(</span><span class="token string">"/analyse/sentiment"</span><span class="token punctuation">,</span> methods<span class="token operator">=</span><span class="token punctuation">[</span><span class="token string">'POST'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>      <span class="token comment">#2</span>
+<span class="token keyword">def</span> <span class="token function">analyse_sentiment</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+    sentence <span class="token operator">=</span> request<span class="token punctuation">.</span>get_json<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token string">'sentence'</span><span class="token punctuation">]</span>           <span class="token comment">#3</span>
+    polarity <span class="token operator">=</span> TextBlob<span class="token punctuation">(</span>sentence<span class="token punctuation">)</span><span class="token punctuation">.</span>sentences<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>polarity <span class="token comment">#4</span>
+    <span class="token keyword">return</span> jsonify<span class="token punctuation">(</span>                                     <span class="token comment">#5</span>
+        sentence<span class="token operator">=</span>sentence<span class="token punctuation">,</span>
+        polarity<span class="token operator">=</span>polarity
+    <span class="token punctuation">)</span>
+    
+<span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+    app<span class="token punctuation">.</span>run<span class="token punctuation">(</span>host<span class="token operator">=</span><span class="token string">'0.0.0.0'</span><span class="token punctuation">,</span> port<span class="token operator">=</span><span class="token number">5000</span><span class="token punctuation">)</span>                <span class="token comment">#6</span></code></pre><!--kg-card-end: code--><ol><li>Instantiate a Flask object.</li><li>Defines the path at which a POST request can be made.</li><li>Extract the “sentence” property from the request body.</li><li>Instantiate an anonymous TextBlob object and get the polarity from the first sentence. (We have only one).</li><li>Return the response with the body containing the sentence and the polarity to the caller.</li><li>Run the flask object <strong>app </strong>to listen for requests on 0.0.0.0:5000 (calls to localhost:5000 will reach this app aswell).</li></ol><p><strong>The services are set up to communicate with each other. Re-open the frontend in localhost:80 and give them a try before continuing on!</strong></p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/Wfr68VDVe8eOlB0Z9sM8sunj60L7UZD1Hu9v" class="kg-image"><figcaption>Fig. 6. Microservice architecture completed</figcaption></figure><!--kg-card-end: image--><p>In the next section, we will go over how to start the services in Docker Containers, as it is a prerequisite to being able to run them in a Kubernetes Cluster.</p><h3 id="2-building-container-images-for-each-service">2. Building container images for each service</h3><p>Kubernetes is a container orchestrator. Understandably we need containers to be able to orchestrate them. But what are containers? This is best answered from the Documentation at docker.</p><blockquote><em>A container image is a lightweight, stand-alone, executable package of a piece of software that includes everything needed to run it: code, runtime, system tools, system libraries, settings. Available for both Linux and Windows based apps, containerized software will always run the same, regardless of the environment.</em></blockquote><p>It means that containers can run on any computer — even in the production server — <strong>with no differences</strong>.</p><p>For illustration purposes let’s compare how our React Application would be served using a Virtual Machine vs. a Container.</p><h4 id="serving-react-static-files-from-a-vm">Serving React static files from a VM</h4><p>The cons of using a Virtual Machine:</p><ol><li>Resource inefficient, each VM has the overhead of a fully-fledged OS.</li><li>It is platform dependent. What worked on your computer might not work on the production server.</li><li>Heavyweight and slow scaling when compared to Containers.</li></ol><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/vP3JZyOygXDzTh7I650wZHtHWkv56ioduUJS" class="kg-image"><figcaption>Fig. 7. Nginx web server with static files on a VM</figcaption></figure><!--kg-card-end: image--><h4 id="serving-react-static-files-from-a-container">Serving React static files from a Container</h4><p>The pros of using a Container.</p><ol><li>Resource efficient, use the Host OS with the help of Docker.</li><li>Platform independent. The container that you run on your computer will work anywhere.</li><li>Lightweight using image layers.</li></ol><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/6I9ZEnnQNMqeTCK8kRWoOjDucfLCJqjAUGWd" class="kg-image"><figcaption>Fig. 8. Nginx web server serving static files in a Container</figcaption></figure><!--kg-card-end: image--><p>Those are the most prominent features and benefits of using containers. For more information continue reading on the <a href="https://www.docker.com/what-container" rel="noopener">Docker documentation</a>.</p><h4 id="building-the-container-image-for-the-react-app-docker-intro-">Building the container image for the React App (Docker intro)</h4><p>The basic building block for a Docker container is the .dockerfile. The <strong>Dockerfile</strong> starts with a base container image and follows up with a sequence of instructions on how to build a new container image that meets the needs of your application.</p><p>Before we get started defining the Dockerfile, let’s remember the steps we took to serve the react static files using nginx:</p><ol><li>Build the static files (npm run build)</li><li>Startup the nginx server</li><li>Copy the contents of the <strong>build</strong> folder from your sa-frontend project to nginx<strong>/</strong>html.</li></ol><p>In the next section, you will notice parallels on how creating a Container is similar to what we did during local React setup.</p><h4 id="defining-the-dockerfile-for-sa-frontend">Defining the Dockerfile for SA-Frontend</h4><p>The instructions in the Dockerfile for the SA-Frontend is only a two-step task. That is because the Nginx Team provided us with <a href="https://hub.docker.com/_/nginx/" rel="noopener">a base image</a> for Nginx, which we will use to build on top of. The two steps are:</p><ol><li>Start from the base <strong>Nginx Image</strong></li><li>Copy the <strong>sa-frontend/build</strong> directory to the containers nginx<strong>/</strong>html directory.</li></ol><p>Converted into a Dockerfile it looks like:</p><!--kg-card-begin: code--><pre class=" language-docker"><code class=" language-docker"><span class="token keyword">FROM</span> nginx
+<span class="token keyword">COPY</span> build /usr/share/nginx/html</code></pre><!--kg-card-end: code--><p>Isn’t it amazing, it’s even humanly readable, let’s recapitulate:</p><p>Start from the nginx image. (Whatever the guys did over there). Copy the <strong>build </strong>directory to the <strong>nginx/html</strong> directory in the image. That’s it!</p><p>You may be wondering, how did I know where to copy the build files? i.e. <code>/usr/share/nginx/html</code>. Quite simple: It was documented in the nginx <a href="https://hub.docker.com/_/nginx/" rel="noopener">image</a> in Docker Hub.</p><h4 id="building-and-pushing-the-container">Building and Pushing the container</h4><p>Before we can push our image, we need a Container Registry to host our images. Docker Hub is a free cloud container service that we will use for this demonstration. You have three tasks before continuing:</p><ol><li><a href="https://www.docker.com/community-edition" rel="noopener">Install Docker CE</a></li><li>Register to the Docker Hub.</li><li>Login by executing the below command in your Terminal:</li></ol><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">docker login -u<span class="token operator">=</span><span class="token string">"<span class="token variable">$DOCKER_USERNAME</span>"</span> -p<span class="token operator">=</span><span class="token string">"<span class="token variable">$DOCKER_PASSWORD</span>"</span></code></pre><!--kg-card-end: code--><p>After completing the above tasks navigate to the directory <strong>sa-frontend.</strong> Then execute the below command (replace $DOCKER_USER_ID with your docker hub username. For e.g. rinormaloku/sentiment-analysis-frontend)</p><!--kg-card-begin: code--><pre><code>docker build -f Dockerfile -t $DOCKER_USER_ID/sentiment-analysis-frontend .</code></pre><!--kg-card-end: code--><p>We can drop <code>-f Dockerfile</code> because we are already in the directory containing the Dockerfile.</p><p>To push the image, use the docker push command:</p><!--kg-card-begin: code--><pre><code>docker push $DOCKER_USER_ID/sentiment-analysis-frontend</code></pre><!--kg-card-end: code--><p>Verify in your docker hub repository that the image was pushed successfully.</p><h4 id="running-the-container">Running the container</h4><p>Now the image in <code>$DOCKER_USER_ID/sentiment-analysis-frontend</code> can be pulled and run by anyone:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">docker pull <span class="token variable">$DOCKER_USER_ID</span>/sentiment-analysis-frontend
+docker run -d -p 80:80 <span class="token variable">$DOCKER_USER_ID</span>/sentiment-analysis-frontend</code></pre><!--kg-card-end: code--><p>Our Docker container is running!</p><p>Before we continue lets elaborate the 80:80 which I find confusing:</p><ul><li>The first 80 is the port of the host (i.e. my computer)</li><li>The second 80 stands for the container port to which the calls should be forwarded.</li></ul><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/uUv5pZc6QErqJVcacC0vU-QEvjDjVF1VlQ9l" class="kg-image"><figcaption>Fig. 9. Port Mapping of Host to Container</figcaption></figure><!--kg-card-end: image--><p>It maps from &lt;hostPort&gt; to &lt;containerPort&gt;. Meaning that calls to host port 80 should be mapped to the port 80 of the container, as shown in figure 9.</p><p>Because the port was run in the host (your computer) in port 80 it should be accessible on the localhost:80. If you do not have native docker support, you can open the application in &lt;docker-machine ip&gt;:80. To find your docker-machine ip ex<code>ecute docker-mach</code>ine ip</p><p>Give it a try! You should be able to access the react application in that endpoint.</p><h4 id="the-dockerignore">The Dockerignore</h4><p>We saw earlier that building the image for SA-Frontend was slow, pardon me, <strong>Extremely slow</strong>. That was the case because of the <strong>build context </strong>that had to be sent to the Docker Deamon. In more detail, the <strong>build context</strong> directory is defined by the last argument in the docker build command (the trailing dot), which specifies the build context. And in our case, it included the following folders:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">sa-frontend:
+<span class="token operator">|</span>   .dockerignore
+<span class="token operator">|</span>   Dockerfile
+<span class="token operator">|</span>   package.json
+<span class="token operator">|</span>   README.md
++---build
++---node_modules
++---public
+\---src</code></pre><!--kg-card-end: code--><p>But the only data we need is in the <strong>build</strong> folder. Uploading anything else will be a waste of time. We can improve our build time by dropping the other directories. That’s where <code>.dockerignore</code> comes into play. For you it will be familiar because it’s like <code>.gitignore</code>, i.e. add all directories that you want to ignore in the <code>.dockerignore</code> file, as shown below:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">node_modules
+src
+public</code></pre><!--kg-card-end: code--><p>The <code>.dockerignore</code> file should be in the same folder as the Dockerfile. Now building the image takes only seconds.</p><p>Let’s continue with the Java Application.</p><h4 id="building-the-container-image-for-the-java-application">Building the container image for the Java Application</h4><p>Guess what! You learned almost everything about creating container images! That’s why this part is extremely short.</p><p>Open the Dockerfile in <strong>sa-webapp</strong>, and you will find only two new keywords:</p><!--kg-card-begin: code--><pre class=" language-docker"><code class=" language-docker"><span class="token keyword">ENV</span> SA_LOGIC_API_URL http<span class="token punctuation">:</span>//localhost<span class="token punctuation">:</span>5000
+…
+<span class="token keyword">EXPOSE</span> 8080</code></pre><!--kg-card-end: code--><p>The keyword <strong>ENV</strong> declares an Environment Variable inside the docker container. This will enable us to provide the URL for the Sentiment Analysis API when starting the Container.</p><p>Additionally, the keyword <strong>EXPOSE</strong> exposes a port that we want to access later on. <strong>But hey!!!</strong> We didn’t do that in the Dockerfile in SA-Frontend, good catch! This is for documentation purposes only, in other words it will serve as information to the person reading the Dockerfile.</p><p>You should be familiar with building and pushing the container image. If any difficulties arise read the README.md file in <strong>sa-webapp</strong> directory.</p><h4 id="building-the-container-image-for-the-python-application">Building the container image for the Python Application</h4><p>In the Dockerfile in <strong>sa-logic</strong> there are no new keywords. Now you can call yourself a Docker-Master ?.</p><p>For building and pushing the container image read the the README.md in <strong>sa-logic </strong>directory.</p><h4 id="testing-the-container-ized-application">Testing the Container-ized Application</h4><p>Can you trust something that you didn’t test? Neither can I. Let’s give these containers a test.</p><ol><li>Run the <strong>sa-logic</strong> container and configure to listen on port 5050:</li></ol><!--kg-card-begin: code--><pre><code>docker run -d -p 5050:5000 $DOCKER_USER_ID/sentiment-analysis-logic</code></pre><!--kg-card-end: code--><p>2. Run <strong>sa-webapp container </strong>and configure to listen on port 8080, and additionally we need to change the port in which the python app listens by overriding the environment variable SA_LOGIC_API_URL.</p><!--kg-card-begin: code--><pre><code>$ docker run -d -p 8080:8080 -e SA_LOGIC_API_URL='http://&lt;container_ip or docker machine ip&gt;:5000' $DOCKER_USER_ID/sentiment-analysis-web-app</code></pre><!--kg-card-end: code--><p>Checkout the <a href="https://github.com/rinormaloku/k8s-mastery/blob/master/sa-webapp/README.md" rel="noopener">README</a> on how to get the container ip or docker machine ip.</p><p>3. Run <strong>sa-frontend</strong> container:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">docker run -d -p 80:80 <span class="token variable">$DOCKER_USER_ID</span>/sentiment-analysis-frontend</code></pre><!--kg-card-end: code--><p>We are done. Open your browser on <strong>localhost:80.</strong></p><p><strong>Attention:</strong> If you changed the port for the sa-webapp, or if you are using docker-machine ip, you need to update App.js file in <strong>sa-frontend</strong> in the method analyzeSentence to fetch from the new IP or Port. Afterwards you need to build, and use the updated image.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/gdDm95hkRv-AnNmuHUFDIONucxEWcvXN1p34" class="kg-image"><figcaption>Fig. 10. Microservices running in Containers</figcaption></figure><!--kg-card-end: image--><h4 id="brain-teaser-why-kubernetes">Brain Teaser — Why Kubernetes?</h4><p>In this section, we learned about the Dockerfile, how to use it to build an image, and the commands to push it to the Docker registry. Additionally, we investigated how to reduce the number of files sent to the build context by ignoring useless files. And in the end, we got the application running from containers. So why Kubernetes? We will investigate deeper into that in the next article, but I want to leave you a brainteaser.</p><ul><li>Our Sentiment Analysis web app became a world hit and we suddenly have a million requests per minute to analyze sentiments and we experience huge load on <strong>sa-webapp</strong> and <strong>sa-logic</strong>. How can we scale the containers?</li></ul><h3 id="introduction-to-kubernetes">Introduction to Kubernetes</h3><p>I promise and I am not exaggerating that by the end of the article you will ask yourself “Why don’t we call it Supernetes?”.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/6z5-sOpVzRF1YeB2kQzrXakp2kBiGDBlMx4t" class="kg-image"><figcaption>Fig. 11. Supernetes</figcaption></figure><!--kg-card-end: image--><p>If you followed this article from the beginning we covered so much ground and so much knowledge. You might worry that this will be the hardest part, but, it is the simplest. The only reason why learning Kubernetes is daunting is because of the “everything else” and we covered that one so well.</p><h3 id="what-is-kubernetes">What is Kubernetes</h3><p>After we started our Microservices from containers we had one question, let’s elaborate it further in a Q&amp;A format:<br><strong>Q:</strong> How do we scale containers?<br><strong>A:</strong> We spin up another one.<br><strong>Q:</strong> How do we share the load between them? What if the Server is already used to the maximum and we need another server for our container? How do we calculate the best hardware utilization?<br><strong>A:</strong> Ahm… Ermm… (Let me google).<br><strong>Q:</strong> Rolling out updates without breaking anything? And if we do, how can we go back to the working version.</p><p>Kubernetes solves all these questions (and more!). My attempt to reduce Kubernetes in one sentence would be: “Kubernetes is a Container Orchestrator, that abstracts the underlying infrastructure. (Where the containers are run)”.</p><p>We have a faint idea about Container Orchestration. We will see it in practice in the continuation of this article, but it’s the first time that we are reading about “abstracts the underlying infrastructure”. So let’s take a close-up shot, at this one.</p><h4 id="abstracting-the-underlying-infrastructure">Abstracting the underlying infrastructure</h4><p>Kubernetes abstracts the underlying infrastructure by providing us with a simple API to which we can send requests. Those requests prompt Kubernetes to meet them at its best of capabilities. For example, it is as simple as requesting “Kubernetes spin up 4 containers of the image x”. Then Kubernetes will find under-utilized nodes in which it will spin up the new containers (see Fig. 12.).</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/oRhjNBu9XyT74V6dxJVs1YJhgoC2eMU8TsCX" class="kg-image"><figcaption>Fig. 12. Request to the API Server</figcaption></figure><!--kg-card-end: image--><p>What does this mean for the developer? That he doesn’t have to care about the number of nodes, where containers are started and how they communicate. He doesn’t deal with hardware optimization or worry about nodes going down (and they will go down <em>Murphy’s Law</em>), because new nodes can be added to the Kubernetes cluster. In the meantime Kubernetes will spin up the containers in the other nodes that are still running. It does this at the best possible capabilities.</p><p>In figure 12 we can see a couple of new things:</p><ul><li><strong>API Server</strong>: Our only way to interact with the Cluster. Be it starting or stopping another container (err *pods) or checking current state, logs, etc.</li><li><strong>Kubelet</strong>: monitors the containers (err *pods) inside a node and communicates with the master node.</li><li><strong>*Pods</strong>: Initially just think of pods as containers.</li></ul><p>And we will stop here, as diving deeper will just loosen our focus and we can always do that later, there are useful resources to learn from, like the official documentation (the hard way) or reading the amazing book <a href="https://www.amazon.com/Kubernetes-Action-Marko-Luksa/dp/1617293725" rel="noopener">Kubernetes in Action</a>, by <a href="https://twitter.com/markoluksa" rel="noopener">Marko Lukša</a>.</p><h4 id="standardizing-the-cloud-service-providers">Standardizing the Cloud Service Providers</h4><p>Another strong point that Kubernetes drives home, is that it standardizes the Cloud Service Providers (CSPs). This is a bold statement, but let’s elaborate with an example:</p><p>– An expert in Azure, Google Cloud Platform or some other CSP ends up working on a project in an entirely new CSP, and he has no experience working with it. This can have many consequences, to name a few: he can miss the deadline; the company might need to hire more resources, and so on.</p><p>In contrast, with Kubernetes this isn’t a problem at all. Because you would be executing the same commands to the API Server no matter what CSP. You on a declarative manner request from the API Server <strong>what you want. </strong>Kubernetes abstracts away and implements the <strong>how </strong>for the CSP in question.</p><p>Give it a second to sink in — this is extremely powerful feature. For the company it means that they are not tied up to a CSP. They calculate their expenses on another CSP, and they move on. They still will have the expertise, they still will have the resources, and they can do that for <em>cheaper!</em></p><p>All that said, in the next section we will put Kubernetes in Practice.</p><h3 id="kubernetes-in-practice-pods">Kubernetes in Practice — Pods</h3><p>We set up the Microservices to run in containers and it was a cumbersome process, but it worked. We also mentioned that this solution is not scalable or resilient and that Kubernetes resolves these issues. In continuation of this article, we will migrate our services toward the end result as shown in figure 13, where the Containers are orchestrated by Kubernetes.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/mrA3VBYh2pbG7qH9wnsMj-QxRxZ2MAqA5oTt" class="kg-image"><figcaption>Fig. 13. Microservices running in a Kubernetes Managed Cluster</figcaption></figure><!--kg-card-end: image--><p>In this article, we will use Minikube for debugging locally, though everything that will be presented works as well in Azure and in Google Cloud Platform.</p><h3 id="installing-and-starting-minikube">Installing and Starting Minikube</h3><p>Follow official documentation for installing <a href="https://kubernetes.io/docs/tasks/tools/install-minikube/" rel="noopener">Minikube</a>. During Minikube installation, you will also install <strong>Kubectl. </strong>This is a client to make requests to the Kubernetes API Server.</p><p>To start Minikube execute the command <code>minikube start</code> and after it is completed, execute kubectl get nodes and you should get the following output</p><!--kg-card-begin: code--><pre><code>kubectl get nodes
+NAME       STATUS    ROLES     AGE       VERSION
+minikube   Ready     &lt;none&gt;    11m       v1.9.0</code></pre><!--kg-card-end: code--><p>Minikube provides us with a Kubernetes Cluster that has only one node, but remember we do not care how many Nodes there are, Kubernetes abstracts that away, and for us to learn Kubernetes that is of no importance. In the next section, we will start with our first Kubernetes resource [DRUM ROLLS] <strong>the Pod</strong>.</p><h4 id="pods">Pods</h4><p>I love containers, and by now you love containers too. So why did Kubernetes decide to give us Pods as the smallest deployable compute unit? What does a pod do? Pods can be composed of one or even a group of containers that share the same execution environment.</p><p>But do we really need to run two containers in one pod? Erm.. Usually, you run only one container and that’s what we will do in our examples. But for cases when for e.g. two containers need to share volumes, or they communicate with each other using inter-process communication or are otherwise tightly coupled, then that’s made possible using <strong>Pods</strong>. Another feature that Pods make possible is that we are not tied to Docker containers, if desired we can use other technologies for e.g. <a href="https://coreos.com/rkt/" rel="noopener">Rkt</a>.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/DiiFgshSEsYe9Rj2AHAUtJUI90CVH53VdioW" class="kg-image"><figcaption><strong>Fig. 14. Pod properties</strong></figcaption></figure><!--kg-card-end: image--><p>To summarize, the main properties of Pods are (also shown in figure 14):</p><ol><li>Each pod has a unique IP address in the Kubernetes cluster</li><li>Pod can have multiple containers. The containers share the same port space, as such they can communicate via localhost (understandably they cannot use the same port), and communicating with containers of the other pods has to be done in conjunction with the pod ip.</li><li>Containers in a pod share the same volume*, same ip, port space, IPC namespace.</li></ol><p>*Containers have their own isolated filesystems, though they are able to share data using the Kubernetes resource <strong>Volumes.</strong></p><p>This is more than enough information for us to continue, but to satisfy your curiosity check out the <a href="https://kubernetes.io/docs/concepts/workloads/pods/pod/" rel="noopener">official documentation</a>.</p><h3 id="pod-definition">Pod definition</h3><p>Below we have the manifest file for our first pod <strong>sa-frontend</strong>, and then below we explain all the points.</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">apiVersion: v1
+kind: Pod                                            <span class="token comment"># 1</span>
+metadata:
+  name: sa-frontend                                  <span class="token comment"># 2</span>
+spec:                                                <span class="token comment"># 3</span>
+  containers:
+    - image: rinormaloku/sentiment-analysis-frontend <span class="token comment"># 4</span>
+      name: sa-frontend                              <span class="token comment"># 5</span>
+      ports:
+        - containerPort: 80                          <span class="token comment"># 6</span></code></pre><!--kg-card-end: code--><ol><li><strong>Kind: </strong>specifies the kind of the Kubernetes Resource that we want to create. In our case, a <strong>Pod</strong>.</li><li><strong>Name:</strong> defines the name for the resource. We named it <strong>sa-frontend</strong>.</li><li><strong>Spec </strong>is the object that defines the desired state for the resource. The most important property of a Pods Spec is the Array of containers.</li><li><strong>Image </strong>is the container image we want to start in this pod.</li><li><strong>Name</strong> is the unique name for a container in a pod.</li><li><strong>Container Port:</strong>is the port at which the container is listening. This is just an indicator for the reader (dropping the port doesn’t restrict access).</li></ol><h3 id="creating-the-sa-frontend-pod">Creating the SA Frontend pod</h3><p>You can find the file for the above pod definition in <code>resource-manifests/<strong>sa-frontend-pod.yaml.</strong></code> You either navigate in your terminal to that folder or you would have to provide the full location in the command line. Then execute the command:</p><!--kg-card-begin: code--><pre class=" language-yaml"><code class=" language-yaml">kubectl create <span class="token punctuation">-</span>f sa<span class="token punctuation">-</span>frontend<span class="token punctuation">-</span>pod.yaml
+pod "sa<span class="token punctuation">-</span>frontend" created</code></pre><!--kg-card-end: code--><p>To check if the Pod is running execute the following command:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">kubectl get pods
+NAME                          READY     STATUS    RESTARTS   AGE
+sa-frontend                   1/1       Running   0          7s</code></pre><!--kg-card-end: code--><p>If it is still in <strong>ContainerCreating</strong> you can execute the above command with the argument <code>--watch</code> to update the information when the Pod is in Running State.</p><h4 id="accessing-the-application-externally">Accessing the application externally</h4><p>To access the application externally we create a Kubernetes resource of type <strong>Service</strong>, that will be our next article, which is the proper implementation, but for quick debugging we have another option, and that is port-forwarding:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">kubectl port-forward sa-frontend 88:80
+Forwarding from 127.0.0.1:88 -<span class="token operator">&gt;</span> 80</code></pre><!--kg-card-end: code--><p>Open your browser in <strong>127.0.0.1:88</strong> and you will get to the react application.</p><h4 id="the-wrong-way-to-scale-up">The wrong way to scale up</h4><p>We said that one of the Kubernetes main features was scalability, to prove this let’s get another pod running. To do so create another pod resource, with the following definition:</p><!--kg-card-begin: code--><pre class=" language-yaml"><code class=" language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Pod                                            
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> sa<span class="token punctuation">-</span>frontend2      <span class="token comment"># The only change</span>
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>                                                
+  <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> rinormaloku/sentiment<span class="token punctuation">-</span>analysis<span class="token punctuation">-</span>frontend 
+      <span class="token key atrule">name</span><span class="token punctuation">:</span> sa<span class="token punctuation">-</span>frontend                              
+      <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">80</span></code></pre><!--kg-card-end: code--><p>Create the new pod by executing the following command:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">kubectl create -f sa-frontend-pod2.yaml
+pod <span class="token string">"sa-frontend2"</span> created</code></pre><!--kg-card-end: code--><p>Verify that the second pod is running by executing:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">kubectl get pods
+NAME                          READY     STATUS    RESTARTS   AGE
+sa-frontend                   1/1       Running   0          7s
+sa-frontend2                  1/1       Running   0          7s</code></pre><!--kg-card-end: code--><p>Now we have two pods running!</p><p><strong>Attention:</strong> this is not the final solution, and it has many flaws. We will improve this in the section for another Kubernetes resource <strong>Deployments</strong>.</p><h4 id="pod-summary">Pod Summary</h4><p>The Nginx web server with the static files is running inside two different pods. Now we have two questions:</p><ul><li>How do we expose it externally to make it accessible via URL, and</li><li>How do we load balance between them?</li></ul><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/I4Xjozhym548e8iBKMcPJ5DnUXZojwrnmQpT" class="kg-image"><figcaption>Fig. 15. Load balancing between pods</figcaption></figure><!--kg-card-end: image--><p>Kubernetes provides us the <strong>Services</strong> resource. Let’s jump right into it, in the next section.</p><h3 id="kubernetes-in-practice-services">Kubernetes in Practice — Services</h3><p>The Kubernetes <strong>Service</strong> resource acts as the entry point to a set of pods that provide the same functional service. This resource does the heavy lifting, of discovering services and load balancing between them as shown in figure 16.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/vUV2hIHJnOtiiMKgw9GiExUShzlYB3hwUeWu" class="kg-image"><figcaption>Fig. 16. Kubernetes Service maintaining IP addresses</figcaption></figure><!--kg-card-end: image--><p>In our Kubernetes cluster, we will have pods with different functional services. (The frontend, the Spring WebApp and the Flask Python application). So the question arises how does a service know which pods to target? I.e. how does it generate the list of the endpoints for the pods?</p><p>This is done using <strong>Labels</strong>, and it is a two-step process:</p><ol><li>Applying a label to all the pods that we want our Service to target and</li><li>Applying a “selector” to our service so that defines which labeled pods to target.</li></ol><p>This is much simpler visually:</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/q-Eg301b9pZA7xpZ1hc2Tqj59cDQ2H18iRKp" class="kg-image"><figcaption>Fig. 17. Pods with labels and their manifests</figcaption></figure><!--kg-card-end: image--><p>We can see that pods are labeled with “app: sa-frontend” and the service is targeting pods with that label.</p><h4 id="labels">Labels</h4><p>Labels provide a simple method for organizing your Kubernetes Resources. They represent a key-value pair and can be applied to every resource. Modify the manifests for the pods to match the example shown earlier in figure 17.</p><p>Save the files after completing the changes, and apply them with the following command:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">kubectl apply -f sa-frontend-pod.yaml
+Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply
+pod <span class="token string">"sa-frontend"</span> configured
+kubectl apply -f sa-frontend-pod2.yaml 
+Warning: kubectl apply should be used on resource created by either kubectl create --save-config or kubectl apply
+pod <span class="token string">"sa-frontend2"</span> configured</code></pre><!--kg-card-end: code--><p>We got a warning (apply instead of create, roger that). In the second line, we see that the pods “sa-frontend” and “sa-frontend2” are configured. We can verify that the pods were labeled by filtering the pods that we want to display:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">kubectl get pod -l app<span class="token operator">=</span>sa-frontend
+NAME           READY     STATUS    RESTARTS   AGE
+sa-frontend    1/1       Running   0          2h
+sa-frontend2   1/1       Running   0          2h</code></pre><!--kg-card-end: code--><p>Another way to verify that our pods are labeled is by appending the flag <code>--show-labels</code> to the above command. This will display all the labels for each pod.<br>Great! Our pods are labeled and we are ready to target them with our Service. Lets get started defining the Service of type LoadBalancer shown in Fig. 18.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/xXXbN86FdMJitJZ0ueRT1DwBecqO4u681uVY" class="kg-image"><figcaption>Fig. 18. Load balancing with the LoadBalancer Service</figcaption></figure><!--kg-card-end: image--><h3 id="service-definition">Service definition</h3><p>The YAML definition of the Loadbalancer Service is shown below:</p><!--kg-card-begin: code--><pre class=" language-yaml"><code class=" language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Service              <span class="token comment"># 1</span>
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> sa<span class="token punctuation">-</span>frontend<span class="token punctuation">-</span>lb
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">type</span><span class="token punctuation">:</span> LoadBalancer       <span class="token comment"># 2</span>
+  <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">port</span><span class="token punctuation">:</span> <span class="token number">80               </span><span class="token comment"># 3</span>
+    <span class="token key atrule">protocol</span><span class="token punctuation">:</span> TCP          <span class="token comment"># 4</span>
+    <span class="token key atrule">targetPort</span><span class="token punctuation">:</span> <span class="token number">80         </span><span class="token comment"># 5</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>                <span class="token comment"># 6</span>
+    <span class="token key atrule">app</span><span class="token punctuation">:</span> sa<span class="token punctuation">-</span>frontend       <span class="token comment"># 7</span></code></pre><!--kg-card-end: code--><ol><li><strong>Kind: </strong>A service.</li><li><strong>Type: </strong>Specification type, we choose LoadBalancer because we want to balance the load between the pods.</li><li><strong>Port: </strong>Specifies the port in which the service gets requests.</li><li><strong>Protocol:</strong> Defines the communication.</li><li><strong>TargetPort:</strong> The port at which incomming requests are forwarded.</li><li><strong>Selector:</strong> Object that contains properties for selecting pods.</li><li><strong>app:</strong> sa-frontend Defines which pods to target, only pods that are labeled with “app: sa-frontend”</li></ol><p>To create the service execute the following command:</p><!--kg-card-begin: code--><pre><code>kubectl create -f service-sa-frontend-lb.yaml
+service "sa-frontend-lb" created</code></pre><!--kg-card-end: code--><p>You can check out the state of the service by executing the following command:</p><!--kg-card-begin: code--><pre><code>kubectl get svc
+NAME             TYPE           CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+sa-frontend-lb   LoadBalancer   10.101.244.40   &lt;pending&gt;     80:30708/TCP   7m</code></pre><!--kg-card-end: code--><p>The <strong>External-IP </strong>is in pending state (and don’t wait, as it’s not going to change). This is only because we are using <strong>Minikube</strong>. If we would have executed this in a cloud provider like Azure or GCP, we would get a Public IP, which makes our services worldwide accessible.</p><p>Despite that, Minikube doesn’t let us hanging it provides a useful command for local debugging, execute the following command:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">minikube <span class="token function">service</span> sa-frontend-lb
+Opening kubernetes <span class="token function">service</span> default/sa-frontend-lb <span class="token keyword">in</span> default browser<span class="token punctuation">..</span>.</code></pre><!--kg-card-end: code--><p>This opens your browser pointing to the services IP. After the Service receives the request, it will forward the call to one of the pods (which one doesn’t matter). This abstraction enables us to see and act with the numerous pods as one unit, using the Service as an entry point.</p><h4 id="service-summary">Service Summary</h4><p>In this section, we covered labeling resources, using those as selectors in Services, and we defined and created a LoadBalancer service. This fulfills our requirements to scale the application (just add new labeled pods) and to Load balance between the pods, using the service as an entry point.</p><h3 id="kubernetes-in-practice-deployments">Kubernetes in Practice — Deployments</h3><p>Kubernetes Deployments help us with one constant in the life of every application, and that is <strong>change</strong>. Moreover, the only applications that do not change are the ones that are already dead, and while not, new requirements will come in, more code will be shipped, it will be packaged, and deployed. And on each step of this process, mistakes can be made.</p><p>The Deployment resource automates the process of moving from one version of the application to the next, with zero downtime and in case of failures, it enables us to quickly roll back to the previous version.</p><h4 id="deployments-in-practice">Deployments in Practice</h4><p>Currently, we have <strong>two pods</strong> and <strong>a service</strong> exposing them and load balancing between them (see Fig. 19.). We mentioned that deploying the pods separately is far from perfect. It requires separately managing each (create, update, delete and monitoring their health). Quick updates and fast rollbacks are out of the question! This is not acceptable and the <strong>Deployments </strong>Kubernetes resource solves each of these issues.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/81V1N8qcLyWZi4t69mWSgYbQWjQrqRD2Ye3W" class="kg-image"><figcaption>Fig. 19. Current state</figcaption></figure><!--kg-card-end: image--><p>Before we continue let’s state what we want to achieve, as it will provide us with the overview that enables us to understand the manifest definition for the deployment resource. What we want is:</p><ol><li>Two pods of the image rinormaloku/sentiment-analysis-frontend</li><li>Zero Downtime deployments,</li><li>Pods labeled with <code><strong>app:</strong> sa-frontend</code> so that the services get discovered by the Service <strong>sa-frontend-lb.</strong></li></ol><p>In the next section, we will translate the requirements into a Deployment definition.</p><h3 id="deployment-definition">Deployment definition</h3><p>The YAML resource definition that achieves all the above-mentioned points:</p><!--kg-card-begin: code--><pre class=" language-yaml"><code class=" language-yaml"><span class="token key atrule">apiVersion</span><span class="token punctuation">:</span> apps/v1
+<span class="token key atrule">kind</span><span class="token punctuation">:</span> Deployment                                          <span class="token comment"># 1</span>
+<span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> sa<span class="token punctuation">-</span>frontend
+<span class="token key atrule">spec</span><span class="token punctuation">:</span>
+  <span class="token key atrule">selector</span><span class="token punctuation">:</span>                                               <span class="token comment"># 2</span>
+    <span class="token key atrule">matchLabels</span><span class="token punctuation">:</span>
+      <span class="token key atrule">app</span><span class="token punctuation">:</span> sa<span class="token punctuation">-</span>frontend                                    
+  <span class="token key atrule">replicas</span><span class="token punctuation">:</span> <span class="token number">2                                             </span><span class="token comment"># 3</span>
+  <span class="token key atrule">minReadySeconds</span><span class="token punctuation">:</span> <span class="token number">15</span>
+  <span class="token key atrule">strategy</span><span class="token punctuation">:</span>
+    <span class="token key atrule">type</span><span class="token punctuation">:</span> RollingUpdate                                   <span class="token comment"># 4</span>
+    <span class="token key atrule">rollingUpdate</span><span class="token punctuation">:</span> 
+      <span class="token key atrule">maxUnavailable</span><span class="token punctuation">:</span> <span class="token number">1                                   </span><span class="token comment"># 5</span>
+      <span class="token key atrule">maxSurge</span><span class="token punctuation">:</span> <span class="token number">1                                         </span><span class="token comment"># 6</span>
+  <span class="token key atrule">template</span><span class="token punctuation">:</span>                                               <span class="token comment"># 7</span>
+    <span class="token key atrule">metadata</span><span class="token punctuation">:</span>
+      <span class="token key atrule">labels</span><span class="token punctuation">:</span>
+        <span class="token key atrule">app</span><span class="token punctuation">:</span> sa<span class="token punctuation">-</span>frontend                                  <span class="token comment"># 8</span>
+    <span class="token key atrule">spec</span><span class="token punctuation">:</span>
+      <span class="token key atrule">containers</span><span class="token punctuation">:</span>
+        <span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> rinormaloku/sentiment<span class="token punctuation">-</span>analysis<span class="token punctuation">-</span>frontend
+          <span class="token key atrule">imagePullPolicy</span><span class="token punctuation">:</span> Always                         <span class="token comment"># 9</span>
+          <span class="token key atrule">name</span><span class="token punctuation">:</span> sa<span class="token punctuation">-</span>frontend
+          <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+            <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">80</span></code></pre><!--kg-card-end: code--><ol><li><strong>Kind: </strong>A deployment.</li><li><strong>Selector: </strong>Pods matching the selector will be taken under the management of this deployment.</li><li><strong>Replicas </strong>is a property of the deployments Spec object that defines how many pods we want to run. So only 2.</li><li><strong>Type </strong>specifies the strategy used in this deployment when moving from the current version to the next. The strategy <strong>RollingUpdate</strong> ensures Zero Downtime deployments.</li><li><strong>MaxUnavailable </strong>is a property of the RollingUpdate object that specifies the maximum unavailable pods allowed (compared to the desired state) when doing a rolling update. For our deployment which has 2 replicas this means that after terminating one Pod, we would still have one pod running, this way keeping our application accessible.</li><li><strong>MaxSurge </strong>is another property of the RollingUpdate object that defines the maximum amount of pods added to a deployment (compared to the desired state). For our deployment, this means that when moving to a new version we can add one pod, which adds up to 3 pods at the same time.</li><li><strong>Template: </strong>specifies the pod template that the Deployment will use to create new pods. Most likely the resemblance with Pods struck you immediately.</li><li><code><strong>app:</strong> sa-frontend</code> the label to use for the pods created by this template.</li><li><strong>ImagePullPolicy</strong> when set to <strong>Always</strong>, it<strong> </strong>will pull the container images on each redeployment.</li></ol><p>Honestly, that wall of text got even me confused, let’s just get started with the example:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">kubectl apply -f sa-frontend-deployment.yaml
+deployment <span class="token string">"sa-frontend"</span> created</code></pre><!--kg-card-end: code--><p>As always let’s verify that everything went as planned:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">kubectl get pods
+NAME                           READY     STATUS    RESTARTS   AGE
+sa-frontend                    1/1       Running   0          2d
+sa-frontend-5d5987746c-ml6m4   1/1       Running   0          1m
+sa-frontend-5d5987746c-mzsgg   1/1       Running   0          1m
+sa-frontend2                   1/1       Running   0          2d</code></pre><!--kg-card-end: code--><p>We got 4 running pods, two pods created by the Deployment and the other two are the ones we created manually. Delete the ones we created manually using the command <code>kubectl delete pod &lt;pod-name&gt;</code>.</p><p><strong>Exercise:</strong> Delete one of the pods of the deployment as well and see what happens. Think for the reason before reading the explanation below.</p><p><strong>Explanation: </strong>Deleting one pod made the Deployment notice that the current state (1 pod running) is different from the desired state (2 pods running) so it started another pod.</p><p>So what was so good about Deployments, besides keeping the desired state? Let’s get started with the benefits.</p><h4 id="benefit-1-rolling-a-zero-downtime-deployment">Benefit #1: Rolling a Zero-Downtime deployment</h4><p>Our Product manager came to us with a new requirement, our clients want to have a green button in the frontend. The developers shipped their code and provided us with the only thing we need, the container image <code>rinormaloku/sentiment-analysis-frontend:green</code>. Now it’s our turn, we the DevOps have to roll a Zero-Downtime deployment, Will the hard work pay off? Let’s see that!</p><p>Edit the file <code>sa-frontend-deployment.yaml</code> by changing the container image to refer to the new image: <code>rinormaloku/sentiment-analysis-frontend:green</code>. Save the changes as <code>sa-frontend-deployment-green.yaml</code> and execute the following command:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">kubectl apply -f sa-frontend-deployment-green.yaml --record
+deployment <span class="token string">"sa-frontend"</span> configured</code></pre><!--kg-card-end: code--><p>We can check the status of the rollout using the following command:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">kubectl rollout status deployment sa-frontend
+Waiting <span class="token keyword">for</span> rollout to finish: 1 old replicas are pending termination<span class="token punctuation">..</span>.
+Waiting <span class="token keyword">for</span> rollout to finish: 1 old replicas are pending termination<span class="token punctuation">..</span>.
+Waiting <span class="token keyword">for</span> rollout to finish: 1 old replicas are pending termination<span class="token punctuation">..</span>.
+Waiting <span class="token keyword">for</span> rollout to finish: 1 old replicas are pending termination<span class="token punctuation">..</span>.
+Waiting <span class="token keyword">for</span> rollout to finish: 1 old replicas are pending termination<span class="token punctuation">..</span>.
+Waiting <span class="token keyword">for</span> rollout to finish: 1 of 2 updated replicas are available<span class="token punctuation">..</span>.
+deployment <span class="token string">"sa-frontend"</span> successfully rolled out</code></pre><!--kg-card-end: code--><p>According to the output the deployment was rolled out. It was done in such a fashion that the replicas were replaced one by one. Meaning that our application was always on. Before we move on let’s verify that the update is live.</p><h4 id="verifying-the-deployment">Verifying the deployment</h4><p>Let’s see the update live on our browsers. Execute the same command that we used before <code>minikube service sa-frontend-lb</code>, which opens up the browser. We can see that the button was updated.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/aRxOGkn2bSeCWdsuMPFAPRgbR7ZTQ59RX3uw" class="kg-image"><figcaption>Fig. 20. The Green button</figcaption></figure><!--kg-card-end: image--><h4 id="behind-the-scenes-of-the-rollingupdate-">Behind the scenes of “The RollingUpdate”</h4><p>After we applied the new deployment, Kubernetes compares the new state with the old one. In our case, the new state requests two pods with the image <code>rinormaloku/sentiment-analysis-frontend:green.</code> This is different from the current state running so it kicks in the <strong>RollingUpdate</strong>.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/I86XgWQFhpFLolvA8v0eHmZSKGilmlTaevTa" class="kg-image"><figcaption>Fig. 21. RollingUpdate replacing pods</figcaption></figure><!--kg-card-end: image--><p>The RollingUpdate acts according to the rules we specified, those being “<strong>maxUnavailable: </strong>1″ and “<strong>maxSurge:</strong> 1″. This means that the deployment can terminate only one pod, and can start only one new pod. This process is repeated until all pods are replaced (see Fig. 21).</p><p>Let’s continue with the benefit number 2.</p><p><strong>Disclaimer:</strong><em> For entertainment purposes, the next part is written as a novella.</em></p><h4 id="benefit-2-rolling-back-to-a-previous-state">Benefit #2: Rolling back to a previous state</h4><p>The Product Manager runs into your office and he is having a <strong>crisis!</strong></p><p>“The application has a critical bug, in PRODUCTION!! Revert back to the previous version immediately” — yells the product manager.</p><p>He sees the coolness in you, not twitching one eye. You turn to your beloved terminal and type:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">kubectl rollout <span class="token function">history</span> deployment sa-frontend
+deployments <span class="token string">"sa-frontend"</span>
+REVISION  CHANGE-CAUSE
+1         <span class="token operator">&lt;</span>none<span class="token operator">&gt;</span>         
+2         kubectl.exe apply --filename<span class="token operator">=</span>sa-frontend-deployment-green.yaml --record<span class="token operator">=</span>true</code></pre><!--kg-card-end: code--><p>You take a short look at the previous deployments. “The last version is buggy, meanwhile the previous version worked perfectly?” — you ask the Product Manager.</p><p>“Yes, are you even listening to me!” — screams the product manager.</p><p>You ignore him, you know what you have to do, you start typing:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">kubectl rollout undo deployment sa-frontend --to-revision<span class="token operator">=</span>1
+deployment <span class="token string">"sa-frontend"</span> rolled back</code></pre><!--kg-card-end: code--><p>You refresh the page and the change is undone!</p><p>The product managers jaw drops open.</p><p>You saved the day!</p><p><em>The end!</em></p><p>Yeah… it was a boring novella. Before Kubernetes existed it was so much better, we had more drama, higher intensity, and that for a longer period of time. Ohh good old times!</p><p>Most of the commands are self-explanatory, besides one detail that you had to work out yourself. Why the first revision has a <strong>CHANGE-CAUSE </strong>of &lt;none&gt; meanwhile the second revision <strong>has a CHANGE-</strong>CAUS<em>E of “kubectl.exe apply –filename=sa-frontend-deployment-gree<strong>n</strong>.yaml –recor</em>d=true“.</p><p>If you concluded that it’s because of the <code>--record</code> flag that we used when we applied the new image then you are totally correct!</p><p>In the next section, we will use the concepts learned thus far to complete the whole architecture.</p><h3 id="kubernetes-and-everything-else-in-practice">Kubernetes and everything else in Practice</h3><p>We learned all the resources that we need to complete the architecture that’s why this part is going to be quick. In figure 22 we have greyed out everything that we still have to do. Lets start from the bottom: <strong>Deploying the sa-logic deployment</strong>.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/CwBGmdNtPUeZwsTSL9inGx8xikkNEejnEeVQ" class="kg-image"><figcaption>Fig. 22. Current Application State</figcaption></figure><!--kg-card-end: image--><h4 id="deployment-sa-logic">Deployment SA-Logic</h4><p>Navigate in your terminal to the folder resource-manifests and execute the following command:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">kubectl apply -f sa-logic-deployment.yaml --record
+deployment <span class="token string">"sa-logic"</span> created</code></pre><!--kg-card-end: code--><p>The deployment SA-Logic created three pods. (Running the container of our python application). It labeled them with <code><strong>app:</strong> sa-logic.</code> This labeling enables us to target them using a selector from the SA-Logic service. Please take time to open the file <code>sa-logic-deployment.yaml</code> and check out the contents.</p><p>It’s the same concepts used all over again, let’s jump right into the next resource: <strong>the service SA-Logic</strong>.</p><h4 id="service-sa-logic">Service SA Logic</h4><p>Lets elaborate why we need this Service. Our Java application (running in the pods of SA — WebApp deployment) depends on the sentiment analysis done by the Python Application. But now, in contrast to when we were running everything locally, we don’t have one single python application listening to one port, we have 2 pods and if needed we could have more.</p><p>That’s why we need a <strong>Service</strong> that “acts as the entry point to a set of pods that provide the same functional service”. This means that we can use the Service SA-Logic as the entry point to all the SA-Logic pods.</p><p>Let’s do that:</p><!--kg-card-begin: code--><pre><code>kubectl apply -f service-sa-logic.yaml
+service "sa-logic" created</code></pre><!--kg-card-end: code--><p><strong>Updated Application State: </strong>We have 2 pods (containing the Python Application) running and we have the SA-Logic service acting as an entry point that we will use in the SA-WebApp pods.</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card kg-card-hascaption"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/fYibPnq4frpa7jf4aq9Htc3sT0OxtgOTZ52x" class="kg-image"><figcaption>Fig. 23. Updated Application State</figcaption></figure><!--kg-card-end: image--><p>Now we need to deploy the SA-WebApp pods, using a deployment resource.</p><h4 id="deployment-sa-webapp">Deployment SA-WebApp</h4><p>We are getting the hang out of deployments, though this one has one more feature. If you open the file <code>sa-web-app-deployment.yaml</code> you will find this part new:</p><!--kg-card-begin: code--><pre class=" language-yaml"><code class=" language-yaml"><span class="token punctuation">-</span> <span class="token key atrule">image</span><span class="token punctuation">:</span> rinormaloku/sentiment<span class="token punctuation">-</span>analysis<span class="token punctuation">-</span>web<span class="token punctuation">-</span>app
+  <span class="token key atrule">imagePullPolicy</span><span class="token punctuation">:</span> Always
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> sa<span class="token punctuation">-</span>web<span class="token punctuation">-</span>app
+  <span class="token key atrule">env</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> SA_LOGIC_API_URL
+      <span class="token key atrule">value</span><span class="token punctuation">:</span> <span class="token string">"http://sa-logic"</span>
+  <span class="token key atrule">ports</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">containerPort</span><span class="token punctuation">:</span> <span class="token number">8080</span></code></pre><!--kg-card-end: code--><p>The first thing that interests us is what does the <strong>env </strong>property do? And we surmise that it is declaring the environment variable SA_LOGIC_API_URL with the value “<a href="http://sa-logic/" rel="noopener">http://sa-logic</a>” inside our pods. But why are we initializing it to <a href="http://sa-logic/" rel="noopener"><strong>http://sa-logic</strong></a>, what is <strong>sa-logic</strong>?</p><p>Lets get introduced to <strong>kube-dns</strong>.</p><h4 id="kube-dns">KUBE-DNS</h4><p>Kubernetes has a special pod the <strong>kube-dns</strong>. And by default, all Pods use it as the DNS Server. One important property of <strong>kube-dns </strong>is that it creates a DNS record for each created service.</p><p>This means that when we created the service <strong>sa-logic </strong>it got an IP address. Its name was added as a record (in conjunction with the IP) in kube-dns. This enables all the pods to translate the <strong>sa-logic </strong>to the SA-Logic services IP address.</p><p>Good, now we can continue with:</p><h4 id="deployment-sa-webapp-continued-">Deployment SA WebApp (continued)</h4><p>Execute the command:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">kubectl apply -f sa-web-app-deployment.yaml --record
+deployment <span class="token string">"sa-web-app"</span> created</code></pre><!--kg-card-end: code--><p>Done. We are left to expose the SA-WebApp pods externally using a LoadBalancer Service. This enables our react application to make http requests to the service which acts as an entry point to the SA-WebApp pods.</p><h4 id="service-sa-webapp">Service SA-WebApp</h4><p>Open the file <code>service-sa-web-app-lb.yaml</code>, as you can see everything is familiar to you.<br>So without further adoexecute the command:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">kubectl apply -f service-sa-web-app-lb.yaml
+<span class="token function">service</span> <span class="token string">"sa-web-app-lb"</span> created</code></pre><!--kg-card-end: code--><p>The architecture is complete. But we have one single dissonance. When we deployed the SA-Frontend pods our container image was pointing to our SA-WebApp in <a href="http://localhost:8080/sentiment" rel="noopener">http://localhost:8080/sentiment</a>. But now we need to update it to point to the IP Address of the SA-WebApp Loadbalancer. (Which acts as an entry point to the SA-WebApp pods).</p><p>Fixing this dissonance provides us with the opportunity to succinctly encompass once more everything from code to deployment. (It’s even more effective if you do this alone instead of following the guide below). Let’s get started:</p><ol><li>Get the SA-WebApp Loadbalancer IP by executing the following command:</li></ol><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">minikube <span class="token function">service</span> list
+<span class="token operator">|</span>-------------<span class="token operator">|</span>----------------------<span class="token operator">|</span>-----------------------------<span class="token operator">|</span>
+<span class="token operator">|</span>  NAMESPACE  <span class="token operator">|</span>         NAME         <span class="token operator">|</span>             URL             <span class="token operator">|</span>
+<span class="token operator">|</span>-------------<span class="token operator">|</span>----------------------<span class="token operator">|</span>-----------------------------<span class="token operator">|</span>
+<span class="token operator">|</span> default     <span class="token operator">|</span> kubernetes           <span class="token operator">|</span> No node port                <span class="token operator">|</span>
+<span class="token operator">|</span> default     <span class="token operator">|</span> sa-frontend-lb       <span class="token operator">|</span> http://192.168.99.100:30708 <span class="token operator">|</span>
+<span class="token operator">|</span> default     <span class="token operator">|</span> sa-logic             <span class="token operator">|</span> No node port                <span class="token operator">|</span>
+<span class="token operator">|</span> default     <span class="token operator">|</span> sa-web-app-lb        <span class="token operator">|</span> http://192.168.99.100:31691 <span class="token operator">|</span>
+<span class="token operator">|</span> kube-system <span class="token operator">|</span> kube-dns             <span class="token operator">|</span> No node port                <span class="token operator">|</span>
+<span class="token operator">|</span> kube-system <span class="token operator">|</span> kubernetes-dashboard <span class="token operator">|</span> http://192.168.99.100:30000 <span class="token operator">|</span>
+<span class="token operator">|</span>-------------<span class="token operator">|</span>----------------------<span class="token operator">|</span>-----------------------------<span class="token operator">|</span></code></pre><!--kg-card-end: code--><p>2. Use the SA-WebApp LoadBalancer IP in the file <code>sa-frontend/src/App.js</code>, as shown below:</p><!--kg-card-begin: code--><pre class=" language-js"><code class=" language-js"><span class="token function">analyzeSentence</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token function">fetch</span><span class="token punctuation">(</span><span class="token string">'http://192.168.99.100:31691/sentiment'</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> <span class="token comment">/* shortened for brevity */</span><span class="token punctuation">}</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">response</span> <span class="token operator">=&gt;</span> response<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token parameter">data</span> <span class="token operator">=&gt;</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span></code></pre><!--kg-card-end: code--><p>3. Build the static files <code>npm run build</code> (you need to navigate to the folder <strong>sa-frontend</strong>)</p><p>4. Build the container image:</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">docker build -f Dockerfile -t <span class="token variable">$DOCKER_USER_ID</span>/sentiment-analysis-frontend:minikube <span class="token keyword">.</span></code></pre><!--kg-card-end: code--><p>5. Push the image to Docker hub.</p><!--kg-card-begin: code--><pre class=" language-bash"><code class=" language-bash">docker push <span class="token variable">$DOCKER_USER_ID</span>/sentiment-analysis-frontend:minikube</code></pre><!--kg-card-end: code--><p>6. Edit the sa-frontend-deployment.yaml to use the new image and</p><p>7. Execute the command kubectl apply -f sa-frontend-deployment.yaml</p><p>Refresh the browser or if you closed the window execute <code>minikube service sa-frontend-lb</code>. Give it a try by typing a sentence!</p><!--kg-card-begin: image--><figure class="kg-card kg-image-card"><img src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/GkLNiTbXMvnaTdwnH0DjS-Lhq7mizlAnl9Mm" class="kg-image"></figure><!--kg-card-end: image--><h3 id="article-summary">Article summary</h3><p>Kubernetes is beneficial for the team, for the project, simplifies deployments, scalability, resilience, it enables us to consume any underlying infrastructure and you know what? From now on, let’s call it Supernetes!</p><p>What we covered in this series:</p><ul><li>Building / Packaging / Running ReactJS, Java and Python Applications</li><li>Docker Containers; how to define and build them using Dockerfiles,</li><li>Container Registries; we used the Docker Hub as a repository for our containers.</li><li>We covered the most important parts of Kubernetes.</li><li>Pods</li><li>Services</li><li>Deployments</li><li>New concepts like Zero-Downtime deployments</li><li>Creating scalable apps</li><li>And in the process, we migrated the whole microservice application to a Kubernetes Cluster.</li></ul><p>I am Rinor Maloku and I want to thank you for joining me on this voyage. Since you read this far I know that you loved this article and would be interested in more. I write articles that go into this depth of detail for new technologies every 3 months. You can always expect an example application, hands-on practice, and a guide that provides you with the right tools and knowledge to tackle any real-world project.</p><p>To stay in touch and not miss any of my articles subscribe to my <a href="https://tinyletter.com/rinormaloku" rel="noopener">newsletter</a>, follow me on <a href="https://twitter.com/rinormaloku" rel="noopener">Twitter</a>, and check out my page <a href="https://rinormaloku.com/" rel="noopener">rinormaloku.com</a>.</p>
+                </div>
+                <p class="social-row">
+    If this article was helpful,
+
+    <a onclick="window.open(`https://twitter.com/share?text=Learn%20Kubernetes%20in%20Under%203%20Hours%3A%20A%20Detailed%20Guide%20to%20Orchestrating%20Containers%20by%20@rinormaloku&amp;url=https://www.freecodecamp.org/news/learn-kubernetes-in-under-3-hours-a-detailed-guide-to-orchestrating-containers-114ff420e882/`, &#39;share-twitter&#39;, &#39;width=550,height=235&#39;);return false;">
+        tweet it</a>
+    or
+    <a onclick="window.open(`https://www.facebook.com/sharer/sharer.php?u=https://www.freecodecamp.org/news/learn-kubernetes-in-under-3-hours-a-detailed-guide-to-orchestrating-containers-114ff420e882/`, &#39;share-facebook&#39;,&#39;width=580,height=296&#39;);return false;">
+        share it</a>.
+</p>                <hr>
+                
+<div class="donation-row">
+    <h4>Happy holidays from freeCodeCamp.org.</h4>
+    <p> <span class="yellow-highlight">Become a monthly supporter of freeCodeCamp.org. Or
+            make a tax-deductible year end gift. Every little bit helps.</span>
+    </p>
+    <a class="donation-cta" href="https://www.freecodecamp.org/donate/">
+        <button class="donation-button">Support freeCodeCamp</button>
+        <img class="payments" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/pay-options.png" alt="payments-options">
+    </a>
+</div>            </section>
+
+
+
+        </article>
+    </div>
+</main>
+
+
+
+
+
+<aside class="read-next outer">
+    <div class="inner">
+        <div class="read-next-feed">
+            <article class="read-next-card" style="background-image: url(/news/content/images/size/w600/2019/11/fcc_ghost_publication_cover.png)">
+                <header class="read-next-card-header">
+                    <p class="read-next-card-header-sitetitle">Countinue reading about</p>
+                    <h3 class="read-next-card-header-title"><a href="https://www.freecodecamp.org/news/tag/kubernetes/">Kubernetes</a></h3>
+                </header>
+                <div class="read-next-card-content">
+                    <ul>
+                        <li><a href="https://www.freecodecamp.org/news/developing-kubernetes-applications-with-joy/">How to Develop Kubernetes Applications with Joy</a></li>
+                        <li><a href="https://www.freecodecamp.org/news/a-simple-introduction-to-kubernetes-container-orchestration/">A Simple Introduction to Kubernetes Container Orchestration</a></li>
+                        <li><a href="https://www.freecodecamp.org/news/how-to-troubleshoot-potential-dos-attacks/">How to troubleshoot potential DOS attacks</a></li>
+                    </ul>
+                </div>
+                <footer class="read-next-card-footer">
+                    <a href="https://www.freecodecamp.org/news/tag/kubernetes/">See all 18 posts
+                        →</a>
+                </footer>
+            </article>
+
+            <article class="post-card post tag-programming tag-software-development tag-python tag-software-engineering tag-object-oriented ">
+
+    <a class="post-card-image-link" href="https://www.freecodecamp.org/news/a-short-overview-of-object-oriented-software-design-c7aa0a622c83/">
+        <img class="post-card-image" srcset="https://cdn-media-1.freecodecamp.org/images/1*DuIQNSG6UjcEXpskd4_dEQ.jpeg 300w,
+                    https://cdn-media-1.freecodecamp.org/images/1*DuIQNSG6UjcEXpskd4_dEQ.jpeg 600w,
+                    https://cdn-media-1.freecodecamp.org/images/1*DuIQNSG6UjcEXpskd4_dEQ.jpeg 1000w,
+                    https://cdn-media-1.freecodecamp.org/images/1*DuIQNSG6UjcEXpskd4_dEQ.jpeg 2000w" sizes="(max-width: 1000px) 400px, 700px" onerror="this.style.display=&#39;none&#39;" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/1_DuIQNSG6UjcEXpskd4_dEQ.jpeg" alt="A Short Overview of Object Oriented Software Design">
+    </a>
+
+    <div class="post-card-content">
+
+        <div class="post-card-content-link">
+
+            <header class="post-card-header">
+                <span class="post-card-tags">
+                    <a href="https://www.freecodecamp.org/news/tag/programming/">
+                        #Programming
+                    </a>
+                </span>
+                <h2 class="post-card-title">
+                    <a href="https://www.freecodecamp.org/news/a-short-overview-of-object-oriented-software-design-c7aa0a622c83/">
+                        A Short Overview of Object Oriented Software Design
+                    </a>
+                </h2>
+            </header>
+
+        </div>
+
+
+        <footer class="post-card-meta">
+
+            <time class="meta-item-single">2 years ago</time>
+
+
+        </footer>
+
+    </div>
+
+</article>
+            <article class="post-card post tag-web-development tag-data tag-analysis tag-tech tag-life-lessons ">
+
+    <a class="post-card-image-link" href="https://www.freecodecamp.org/news/how-65-new-developers-with-no-previous-coding-experience-got-their-first-jobs-103846ba640e/">
+        <img class="post-card-image" srcset="https://cdn-media-1.freecodecamp.org/images/1*4HHWw6_I-DJ6Ov0FJZYpDg.jpeg 300w,
+                    https://cdn-media-1.freecodecamp.org/images/1*4HHWw6_I-DJ6Ov0FJZYpDg.jpeg 600w,
+                    https://cdn-media-1.freecodecamp.org/images/1*4HHWw6_I-DJ6Ov0FJZYpDg.jpeg 1000w,
+                    https://cdn-media-1.freecodecamp.org/images/1*4HHWw6_I-DJ6Ov0FJZYpDg.jpeg 2000w" sizes="(max-width: 1000px) 400px, 700px" onerror="this.style.display=&#39;none&#39;" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/1_4HHWw6_I-DJ6Ov0FJZYpDg.jpeg" alt="How 65 new developers with no previous coding experience got their first jobs">
+    </a>
+
+    <div class="post-card-content">
+
+        <div class="post-card-content-link">
+
+            <header class="post-card-header">
+                <span class="post-card-tags">
+                    <a href="https://www.freecodecamp.org/news/tag/web-development/">
+                        #Web Development
+                    </a>
+                </span>
+                <h2 class="post-card-title">
+                    <a href="https://www.freecodecamp.org/news/how-65-new-developers-with-no-previous-coding-experience-got-their-first-jobs-103846ba640e/">
+                        How 65 new developers with no previous coding experience got their first jobs
+                    </a>
+                </h2>
+            </header>
+
+        </div>
+
+
+        <footer class="post-card-meta">
+
+            <time class="meta-item-single">2 years ago</time>
+
+
+        </footer>
+
+    </div>
+
+</article>
+        </div>
+    </div>
+</aside>
+
+
+
+
+        <footer class="site-footer">
+    <div class="footer-container">
+        <div class="footer-row">
+            <div class="footer-desc-col">
+                <p>freeCodeCamp is a donor-supported tax-exempt 501(c)(3) nonprofit organization (United States Federal
+                    Tax Identification Number: 82-0779546)
+                </p>
+                <p>
+                    Our mission: to help people learn to code for free. We accomplish this by creating thousands of
+                    videos, articles, and interactive coding lessons - all freely available to the public. We also have
+                    thousands of freeCodeCamp study groups around the world.
+                </p>
+                <p>
+                    Donations to freeCodeCamp go toward our education initiatives, and help pay for servers, services,
+                    and staff.
+                </p>
+                <p class="footer-donation">
+                    You can&nbsp;<a href="https://freecodecamp.org/donate" class="inline" rel="noopener noreferrer" target="_blank">make a tax-deductible donation here</a>.
+                </p>
+            </div>
+            <div class="footer-col-1 our-nonprofit">
+                <div class="col-header">Our Nonprofit</div>
+                <a href="https://www.freecodecamp.org/news/about/">About</a>
+                <a href="https://www.linkedin.com/school/free-code-camp/people/" rel="noopener noreferrer" target="_blank">Alumni Network</a>
+                <a href="https://github.com/freeCodeCamp/">Open Source</a>
+                <a href="https://www.freecodecamp.org/shop/" rel="noopener noreferrer" target="_blank">Shop</a>
+                <a href="https://www.freecodecamp.org/news/support/">Support</a>
+                <a href="https://www.freecodecamp.org/news/sponsors/">Sponsors</a>
+                <a href="https://www.freecodecamp.org/news/academic-honesty-policy/">Academic Honesty</a>
+                <a href="https://www.freecodecamp.org/news/code-of-conduct/">Code of Conduct</a>
+                <a href="https://www.freecodecamp.org/news/privacy-policy/">Privacy Policy</a>
+                <a href="https://www.freecodecamp.org/news/terms-of-service/">Terms of Service</a>
+                <a href="https://www.freecodecamp.org/news/copyright-policy/">Copyright Policy</a>
+            </div>
+            <div class="footer-col-2 trending-guides">
+                <div class="col-header">Trending Guides</div>
+                <a href="https://www.freecodecamp.org/news/2019-web-developer-roadmap/">2019 Web Developer Roadmap</a>
+                <a href="https://www.freecodecamp.org/news/best-python-tutorial/">Python Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/understanding-flexbox-everything-you-need-to-know-b4013d4dc9af/">CSS
+                    Flexbox Guide</a>
+                <a href="https://www.freecodecamp.org/news/best-javascript-tutorial/">JavaScript Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/python-example/">Python Example </a>
+                <a href="https://www.freecodecamp.org/news/best-html-html5-tutorial/">HTML Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/linux-command-line-bash-tutorial/">Linux Command Line
+                    Guide</a>
+                <a href="https://www.freecodecamp.org/news/javascript-example/">JavaScript Example</a>
+                <a href="https://www.freecodecamp.org/news/best-git-tutorial/">Git Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-react-javascript-tutorial/">React Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-java-8-tutorial/">Java Tutorial</a>
+
+            </div>
+            <div class="footer-col-3">
+                <div class="col-spacer"></div>
+                <a href="https://www.freecodecamp.org/news/the-best-linux-tutorials/">Linux Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/best-css-and-css3-tutorial/">CSS Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/the-best-jquery-examples/">jQuery Example</a>
+                <a href="https://www.freecodecamp.org/news/best-sql-database-tutorial/">SQL Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/css-example-css3/">CSS Example</a>
+                <a href="https://www.freecodecamp.org/news/react-examples-reactjs/">React Example</a>
+                <a href="https://www.freecodecamp.org/news/best-angular-tutorial-angularjs/">Angular Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/the-best-bootstrap-examples/">Bootstrap Example</a>
+                <a href="https://www.freecodecamp.org/news/the-ultimate-guide-to-ssh-setting-up-ssh-keys/">How to Set Up
+                    SSH Keys</a>
+                <a href="https://www.freecodecamp.org/news/best-wordpress-tutorial/">WordPress Tutorial</a>
+                <a href="https://www.freecodecamp.org/news/the-best-php-examples/">PHP Example</a>
+
+            </div>
+        </div>
+    </div>
+</footer>
+    </div>
+
+
+    <script>
+        var images = document.querySelectorAll('.kg-gallery-image img');
+        images.forEach(function (image) {
+            var container = image.closest('.kg-gallery-image');
+            var width = image.attributes.width.value;
+            var height = image.attributes.height.value;
+            var ratio = width / height;
+            container.style.flex = ratio + ' 1 0%';
+        })
+    </script>
+
+
+    <script src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+        </script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/jquery.fitvids.js"></script>
+
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-unescaped-markup.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-markup-templating.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-bash.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-c.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-clojure.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-cpp.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-csharp.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-css.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-docker.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-elixir.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-erlang.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-git.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-go.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-graphql.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-haskell.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-java.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-javascript.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-json.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-jsx.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-kotlin.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-lua.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-markup.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-php.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-python.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-r.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-ruby.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-rust.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-scala.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-sql.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-swift.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-typescript.min.js"></script>
+    <script type="text/javascript" src="./Learn Kubernetes in Under 3 Hours_ A Detailed Guide to Orchestrating Containers_files/prism-yaml.min.js"></script>
+
+    <script>
+    $(document).ready(function () {
+        // Start fitVids
+        var $postContent = $(".post-full-content");
+        $postContent.fitVids();
+        // End fitVids
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $(".toggle-button-nav").click(function () {
+            $(".nav").toggleClass("show-main-nav-items");
+            $(".site-nav").toggleClass("expand-nav");
+            $(".toggle-button-nav").toggleClass("reverse-toggle-color");
+            $(".site-nav-left").toggleClass("display-search");
+        });
+    });
+</script>
+
+
+    <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5D6RKKP"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+
+
+</body></html>
