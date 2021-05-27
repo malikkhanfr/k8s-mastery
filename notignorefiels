@@ -1,0 +1,57 @@
+.
+├── notignorefiels
+├── README.md
+├── resource-manifests
+│   ├── sa-frontend-deployment-green.yaml
+│   ├── sa-frontend-deployment.yaml
+│   ├── sa-frontend-pod2.yaml
+│   ├── sa-frontend-pod.yaml
+│   ├── sa-logic-deployment.yaml
+│   ├── sa-web-app-deployment.yaml
+│   ├── service-sa-frontend-lb.yaml
+│   ├── service-sa-logic.yaml
+│   └── service-sa-web-app-lb.yaml
+├── sa-frontend
+│   ├── Dockerfile
+│   ├── package.json
+│   ├── package-lock.json
+│   ├── public
+│   │   ├── index.html
+│   │   ├── manifest.json
+│   │   └── sa-icon.ico
+│   ├── README.md
+│   ├── src
+│   │   ├── App.css
+│   │   ├── App.js
+│   │   ├── components
+│   │   │   └── Polarity.js
+│   │   ├── index.js
+│   │   └── registerServiceWorker.js
+│   └── yarn.lock
+├── sa-logic
+│   ├── Dockerfile
+│   ├── README.md
+│   └── sa
+│       ├── requirements.txt
+│       └── sentiment_analysis.py
+└── sa-webapp
+    ├── Dockerfile
+    ├── mvnw
+    ├── mvnw.cmd
+    ├── pom.xml
+    ├── README.md
+    └── src
+        └── main
+            ├── java
+            │   └── com
+            │       └── sa
+            │           └── web
+            │               ├── dto
+            │               │   ├── SentenceDto.java
+            │               │   └── SentimentDto.java
+            │               ├── SentimentAnalysisWebApp.java
+            │               └── SentimentController.java
+            └── resources
+                └── application.properties
+
+16 directories, 38 files
