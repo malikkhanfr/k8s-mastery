@@ -4,6 +4,7 @@ node_modules/
 
 # SA Logic ignored files
 venv/
+venvforlogic/
 
 # SA WebApp ignored files
 target/
