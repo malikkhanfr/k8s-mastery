@@ -5,6 +5,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import Polarity from "./components/Polarity";
+import configData from "./env-config.js";
 
 const style = {
     marginLeft: 12,
@@ -20,7 +21,7 @@ class App extends Component {
     };
 
     analyzeSentence() {
-        fetch('http://localhost:8080/sentiment', {
+        fetch(window._env_.API_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -48,10 +49,13 @@ class App extends Component {
                     <Paper zDepth={1} className="content">
                         <h2>Sentiment Analyser</h2>
                         <TextField ref={ref => this.textField = ref} onKeyUp={this.onEnterPress.bind(this)}
-                                   hintText="Type your sentence."/>
+                                   hintText={configData.title}/>
                         <RaisedButton  label="Send" style={style} onClick={this.analyzeSentence.bind(this)}/>
                         {polarityComponent}
+                        <p>API_URL: {window._env_.API_URL}</p>
+
                     </Paper>
+
                 </div>
             </MuiThemeProvider>
         );
