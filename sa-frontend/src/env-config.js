@@ -1,3 +1,3 @@
 window._env_ = {
-  API_URL: "API_BASE_URL",
+  API_URL: "TO_BE_REPLACED_URL",
 }

@@ -21,7 +21,7 @@ class App extends Component {
     };
 
     analyzeSentence() {
-        fetch(window._env_.API_URL, {
+        fetch('TO_BE_REPLACED_URL', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -52,7 +52,7 @@ class App extends Component {
                                    hintText={configData.title}/>
                         <RaisedButton  label="Send" style={style} onClick={this.analyzeSentence.bind(this)}/>
                         {polarityComponent}
-                        <p>API_URL: {window._env_.API_URL}</p>
+                        <p>API_URL: TO_BE_REPLACED_URL</p>
 
                     </Paper>
 

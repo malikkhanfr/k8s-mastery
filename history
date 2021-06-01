@@ -1,0 +1,22 @@
+docker stop confident_boyd
+docker ps -a
+docker run -d -p 80:80 -e API_BASE_URL=http://myawesomebackend.com/api testdock
+docker rm $(docker ps -a -q)
+docker image rm testdock
+docker build  -t testdock .
+docker run -d -p 80:80 testdock
+docker exec -it epic_keller bash
+docker pull $DOCKER_USER_ID/sentiment-analysis-frontend:dynamicurl2
+docker push $DOCKER_USER_ID/sentiment-analysis-frontend:dynamicurl2
+sa-frontend-deployment-dynamicurl.yaml 
+kubectl apply -f sa-frontend-deployment-dynamicurl.yaml 
+kubernetes get pods
+kubectl get svc
+minikube service sa-frontend-lb
+kubectl apply -f sa-logic-deployment.yaml --record
+kubectl apply -f service-sa-logic.yaml
+kubectl apply -f sa-web-app-deployment.yaml --record
+kubectl apply -f service-sa-web-app-lb.yaml
+minikube service list
+kubectl get pods
+
